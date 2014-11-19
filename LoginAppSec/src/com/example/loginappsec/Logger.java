@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Logger extends Activity {
 
@@ -37,7 +38,8 @@ public class Logger extends Activity {
 				userInputPass = userp.getText().toString();
 				
 				//TODO do something with the informations retrieved above
-				
+				//like checking if the users exist or not
+				Toast.makeText(mContext, "sick bastard"+userInputName + " "+userInputPass, Toast.LENGTH_SHORT).show();
 			}
 		});
 		Button register = (Button) findViewById(R.id.register);

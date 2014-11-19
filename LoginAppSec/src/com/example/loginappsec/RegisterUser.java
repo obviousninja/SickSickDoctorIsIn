@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class RegisterUser extends Activity {
 
@@ -35,7 +36,9 @@ public class RegisterUser extends Activity {
 				EditText confirmpasswordblock = (EditText) findViewById(R.id.regpassword2);
 				confirmpassword = confirmpasswordblock.getText().toString();
 				
-				//TODO store the informations retreved above
+				//TODO store the informations retrieved above
+				//check if user exist, if not add, otherwise tell it like it is...
+				Toast.makeText(getApplicationContext(), nickName+" "+email+" "+password+" "+confirmpassword, Toast.LENGTH_LONG).show();
 			}
 		});
 		
