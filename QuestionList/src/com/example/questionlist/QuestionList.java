@@ -31,7 +31,7 @@ public class QuestionList extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mContext = getApplicationContext();
+		mContext = this;
 		mAdapter = new QuestionListAdapter(mContext);
 		mAdapter.setItems(populateQuestions());
 		
