@@ -71,7 +71,8 @@ Description:
   Displays a question's title and description. Also shows the existing answers to the question and has a button which is meant to lead to the AnswerQuestion activity.
   
 QUESTIONLIST:
-Status:
+
+  Status:
 
   Awaiting database implementation to obtain questions. It currently creates sample questions on its own.
   Awaiting category/question implementation to create a list of questions based on their category.
