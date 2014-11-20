@@ -150,7 +150,7 @@ Methods are named.
 
 Documentation:
 
-This class includes fields like question text, user name, answers, answerers’ user names, answer texts, categories, and answer score.
+This class includes fields like question text, user name, answers, answerers’ user names, answer texts, categories, and answer score. The Answers will be stored in a HashMap, with the KEY being the username, and the VALUE being an array of size 2, containing their text answer and the score of the answer.
 
 
 
