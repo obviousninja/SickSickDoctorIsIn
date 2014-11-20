@@ -48,8 +48,12 @@ Documentaion:
   MultiLine EditText that the user can enter his/her question into. Below will be a spinner to choose a category. Other options might include location, age, and others. These will be determined depending how much time is available after the rest of the app is finished.
   
 ANSWER:
+
 Status:
+
   Waiting for database implementation to send the answers.
   Waiting for database implementation to add coins appropriately.
+  
 Documentation:
+
   displays the question above a MultiLine EditText. The user can click in the MultiLine EditText to answer the question. Below the EditText there will be a cancel button and a submit button. Clicking cancel will return the user to the question's main page. Clicking submit will send the user to the question's main page, but with the user's answer included.
