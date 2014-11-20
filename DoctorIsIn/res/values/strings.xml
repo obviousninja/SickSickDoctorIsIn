@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DoctorIsIn</string>
+    <string name="profile">My Profile</string>
+    <string name="ask">Ask A Question</string>
+    <string name="food_desc">food</string>
+    <string name="entertainment_desc">entertainment</string>
+    <string name="personal_desc">personal</string>
+    <string name="sports_desc">sports</string>
+    <string name="religion_desc">religion</string>
+    <string name="other_desc">other</string>
+
+</resources>
