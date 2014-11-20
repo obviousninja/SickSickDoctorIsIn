@@ -57,3 +57,21 @@ Status:
 Documentation:
 
   displays the question above a MultiLine EditText. The user can click in the MultiLine EditText to answer the question. Below the EditText there will be a cancel button and a submit button. Clicking cancel will return the user to the question's main page. Clicking submit will send the user to the question's main page, but with the user's answer included.
+  
+PART: QuestionView and QuestionList 
+
+QUESTIONVIEW: 
+
+Status:
+  Awaiting database implementation to track upvotes and downvotes.
+
+Description: 
+  Displays a question's title and description. Also shows the existing answers to the question and has a button which is meant to lead to the AnswerQuestion activity.
+  
+QUESTIONLIST:
+Status:
+  Awaiting database implementation to obtain questions. It currently creates sample questions on its own.
+  Awaiting category/question implementation to create a list of questions based on their category.
+
+Description: 
+  Displays a list of questions. Tapping a question leads to its QuestionView. The QuestionList View also has a button which is meant to allow users to ask a new question when the AskQuestion activity is implemented.  
