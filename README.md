@@ -80,3 +80,23 @@ QUESTIONLIST:
 Description:
 
   Displays a list of questions. Tapping a question leads to its QuestionView. The QuestionList View also has a button which is meant to allow users to ask a new question when the AskQuestion activity is implemented.  
+  
+MainActivity
+
+Status: 
+
+The general organization and layout is complete. However, better looking icons need to be found and chosen. The categories are also not necessarily final, but limiting the mainActivity to 6 categories may be the best option to avoid clutter.
+
+Documentation: 
+
+MainActivity displays 6 categories of questions users can choose from, food, entertainment, personal, sports, religion, and other. The option menu bar will allow the user to ask a question and also check their personal profile page.
+
+Profile
+
+Status:
+
+Pending what should go on the profile page
+
+Documentation:
+
+The profile page will display general statistics related to the user and will also most likely need to be able to show their questions which have been answered and not yet rated. 
