@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="question_view_answer_button_text">Click to answer the question</string>
+    <string name="upvote_description">An arrow pointing up</string>
+    <string name="downvote_description">An arrow pointing down</string>
+    <string name="question_list_ask">Click to ask a new question</string>
+
+</resources>
