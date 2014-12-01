@@ -30,5 +30,17 @@
     <string name="others_near_you">Only ask people near you</string>
     <string name="the_question_goes_here">The question goes here</string>
     <string name="write_answer_here">Write your answer here</string>
+	<string name="profile">My Profile</string>
+    <string name="ask">Ask A Question</string>
+    <string name="food_desc">food</string>
+    <string name="entertainment_desc">entertainment</string>
+    <string name="personal_desc">personal</string>
+    <string name="sports_desc">sports</string>
+    <string name="religion_desc">religion</string>
+    <string name="other_desc">other</string>
+    <string name="amount_of_coins">Amount of Coins:</string>
+    <string name="number_of_questions">Total Asked:</string>
+    <string name="number_of_answers">Total Answered:</string>
+	<string name="blank"> </string>
 
 </resources>
