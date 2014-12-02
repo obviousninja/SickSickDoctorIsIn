@@ -31,14 +31,14 @@ public class AnswerQuestionActivity extends Activity {
 			}
 		});
 		
-		submit.setOnClickListener(new onClickListener() {
+		submit.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				if (answer.getText().toString().length() < 2) {
 					Toast.makeText(getApplicationContext(), "Answer needs to be longer", Toast.LENGTH_LONG).show();
 				} else {
 					Intent intent = new Intent(AnswerQuestionActivity.this, QuestionListActivty.class);
 					intent.putExtra("ANSWER", questionText.getText().toString());
-					startActivty(intent);
+					startActivity(intent);
 				}
 			}
 		});
