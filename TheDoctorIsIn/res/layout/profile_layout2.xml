@@ -1,88 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    tools:ignore="HardcodedText" >
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:textSize="32sp"
-        android:text="@string/profile">
+        android:text="@string/profile"
+        android:textSize="32sp" >
     </TextView>
-    <LinearLayout 
-         android:layout_width="match_parent"
-   		 android:layout_height="0dp"
-    	 android:orientation="vertical" 
-    	 android:layout_weight="4">
-    	 <ListView
-    	     android:id="@+id/open_question_list"
-             android:layout_height="wrap_content"
-             android:layout_width="match_parent" >
-    	 </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/open_question_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </ListView>
     </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
-    	android:layout_height="wrap_content" 
-    	android:layout_weight="5">
-    	<TextView
-        android:id="@+id/coin_edit"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/question_label"
-        android:layout_toRightOf="@+id/coin_label"
-        android:text="                      "
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_weight="5" >
 
-    <TextView
-        android:id="@+id/answered_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/answer_label"
-        android:layout_alignBottom="@+id/answer_label"
-        android:layout_toRightOf="@+id/answer_label"
-        android:text="                      "
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+            android:id="@+id/coin_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/question_label"
+            android:layout_toRightOf="@+id/coin_label"
+            android:text="                      "
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <TextView
-        android:id="@+id/asked_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/answer_label"
-        android:layout_toRightOf="@+id/question_label"
-        android:text="                      "
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+            android:id="@+id/answered_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/answer_label"
+            android:layout_alignBottom="@+id/answer_label"
+            android:layout_toRightOf="@+id/answer_label"
+            android:text="                      "
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <TextView
-        android:id="@+id/answer_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/question_label"
-        android:text="@string/number_of_answers"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+            android:id="@+id/asked_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/answer_label"
+            android:layout_toRightOf="@+id/question_label"
+            android:text="                      "
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <TextView
-        android:id="@+id/question_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/coin_label"
-        android:text="@string/number_of_questions"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+            android:id="@+id/answer_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/question_label"
+            android:text="@string/number_of_answers"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <TextView
-        android:id="@+id/coin_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/profile_header"
-        android:layout_marginTop="27dp"
-        android:text="@string/amount_of_coins"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-    	 
+        <TextView
+            android:id="@+id/question_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/coin_label"
+            android:text="@string/number_of_questions"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/coin_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/profile_header"
+            android:layout_marginTop="27dp"
+            android:text="@string/amount_of_coins"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
     </RelativeLayout>
-    
 
 </LinearLayout>

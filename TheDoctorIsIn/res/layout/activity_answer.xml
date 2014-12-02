@@ -40,8 +40,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="52dp"
         android:layout_marginLeft="19dp"
-        android:text="@string/cancel"
-        android:background="#ff0000" />
+        android:background="#ff0000"
+        android:text="@string/cancel" />
 
     <Button
         android:id="@+id/answerSubmitButton"
@@ -51,7 +51,7 @@
         android:layout_alignBottom="@+id/answerCancelButton"
         android:layout_alignRight="@+id/answerAnswerEditText"
         android:layout_marginRight="46dp"
-        android:text="@string/submit"
-        android:background="#00ff00" />
+        android:background="#00ff00"
+        android:text="@string/submit" />
 
 </RelativeLayout>

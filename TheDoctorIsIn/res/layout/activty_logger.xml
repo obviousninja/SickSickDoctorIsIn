@@ -7,57 +7,54 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.loginapp.MainActivity" >
-	<LinearLayout 
-	    android:layout_width = "match_parent"
-	    android:layout_height = "match_parent" 
-	    android:paddingLeft="16dp"
-    	android:paddingRight="16dp"
-    	android:orientation="vertical"
-	    >
-	<TextView
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp" >
+
+        <TextView
+            android:id="@+id/displayUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/username_text" />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/username" />
+
+        <TextView
+            android:id="@+id/displayPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/password_text" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/displayUserName"
-     	  android:text="@string/username_text" 
-     	
-        />
-    <EditText
-        android:layout_width ="match_parent"
-        android:layout_height = "wrap_content"
-        android:id="@+id/username"
-        android:hint="@string/username"
-		/>
-	<TextView
-	    android:layout_width = "wrap_content"
-	    android:layout_height = "wrap_content"
-	    android:id="@+id/displayPassword"
-	    android:text="@string/password_text"
-	    />
-	<EditText 
-	    android:layout_width = "match_parent"
-	    android:layout_height = "wrap_content"
-	    android:id="@+id/password"
-	    android:inputType="textPassword"
-	    android:hint="@string/password" 
-		/>    
-	    
-	</LinearLayout>
-    
-	<Button
-	    android:layout_width = "wrap_content"
-	    android:layout_height = "wrap_content"
-	    android:text="@string/login"
-	    android:id="@+id/loginButton"
-	    android:layout_alignParentBottom="true"
-	    android:layout_alignParentLeft="true"
-	    />
-	<Button 
-	    android:layout_width="wrap_content"
-	    android:layout_height = "wrap_content"
-	    android:id="@+id/register"
-	    android:text="@string/register"
-	    android:layout_alignParentBottom="true"
-	    android:layout_alignParentRight="true"
-	    />
-    
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/login" />
+
+    <Button
+        android:id="@+id/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/register" />
+
 </RelativeLayout>

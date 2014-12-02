@@ -10,36 +10,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="15dp"
-        android:layout_below="@+id/upvoteButton"/>
+        android:layout_below="@+id/upvoteButton"
+        android:layout_marginLeft="15dp" />
 
     <ImageButton
         android:id="@+id/upvoteButton"
-        android:contentDescription="@string/upvote_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:contentDescription="@string/upvote_description"
         android:src="@android:drawable/arrow_up_float" />
 
     <ImageButton
         android:id="@+id/downvoteButton"
-        android:contentDescription="@string/downvote_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/score"
+        android:contentDescription="@string/downvote_description"
         android:src="@android:drawable/arrow_down_float" />
 
     <TextView
         android:id="@+id/answerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical"
         android:layout_alignTop="@+id/upvoteButton"
         android:layout_toRightOf="@+id/upvoteButton"
-        android:textColor="@android:color/black"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
+        android:scrollbars="vertical"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/black" />
 
 </RelativeLayout>
