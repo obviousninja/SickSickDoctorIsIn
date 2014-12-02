@@ -19,31 +19,30 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="0.4dp"
-        android:layout_marginTop="12dp"
         android:layout_marginBottom="2dp"
+        android:layout_marginTop="12dp"
         android:background="@android:color/darker_gray"
         android:visibility="visible" />
-    
-	<TextView
-	    android:id="@+id/question_view_description"
-	    android:layout_width="match_parent"
-	    android:layout_height="100dp"
-	    android:textAppearance="?android:attr/textAppearanceMedium" 
-	    android:scrollbars="vertical">
-	</TextView>
-	    
+
+    <TextView
+        android:id="@+id/question_view_description"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:scrollbars="vertical"
+        android:textAppearance="?android:attr/textAppearanceMedium" >
+    </TextView>
+
     <View
         android:layout_width="fill_parent"
         android:layout_height="0.4dp"
-        android:layout_marginTop="2dp"
         android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp"
         android:background="@android:color/darker_gray"
         android:visibility="visible" />
-    
+
     <ListView
         android:id="@+id/question_view_answers"
-   		android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-   		/>
-    
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

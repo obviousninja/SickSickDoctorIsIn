@@ -1,4 +1,4 @@
-package com.example.doctorisin;
+package com.example.thedoctorisin;
 
 
 import android.app.Activity;

@@ -15,9 +15,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:ems="10"
-        android:inputType="textMultiLine"
-        android:hint="@string/write_question_here" >
-
+        android:hint="@string/write_question_here"
+        android:inputType="textMultiLine" >
     </EditText>
 
     <Spinner
@@ -45,8 +44,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="32dp"
         android:layout_marginLeft="18dp"
-        android:text="@string/cancel"
-        android:background="#ff0000" />
+        android:background="#ff0000"
+        android:text="@string/cancel" />
 
     <Button
         android:id="@+id/button2"
@@ -55,7 +54,7 @@
         android:layout_alignBaseline="@+id/askCancelButton"
         android:layout_alignBottom="@+id/askCancelButton"
         android:layout_toRightOf="@+id/askByLocation"
-        android:text="@string/submit"
-        android:background="#00ff00" /> 
+        android:background="#00ff00"
+        android:text="@string/submit" />
 
 </RelativeLayout>
