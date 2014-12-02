@@ -34,6 +34,14 @@
             android:name=".ProfileActivity"
             android:label="Profile Activity">
         </activity>
+        <activity 
+            android:name=".AnswerQuestionActivity"
+            android:label="AnswerQ Activity">
+        </activity>
+        <activity 
+            android:name=".AskQuestionActivity"
+            android:label="AskQActivity">
+        </activity>
     </application>
 
 </manifest>

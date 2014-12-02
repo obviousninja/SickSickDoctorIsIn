@@ -95,7 +95,8 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		if(id == R.id.ask_a_question){
-			//Go to ask a question page
+			Intent askIntent = new Intent(MainActivity.this,AskQuestionActivity.class);
+			startActivity(askIntent);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
