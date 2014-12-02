@@ -1,4 +1,4 @@
-package com.example.doctorisin;
+package com.example.thedoctorisin;
 
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
