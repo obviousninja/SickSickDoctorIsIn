@@ -37,9 +37,15 @@ public class Logger extends Activity {
 				EditText userp = (EditText) findViewById(R.id.password);
 				userInputPass = userp.getText().toString();
 				
-				//TODO do something with the informations retrieved above
-				//like checking if the users exist or not
-				Toast.makeText(mContext, "sick bastard"+userInputName + " "+userInputPass, Toast.LENGTH_SHORT).show();
+				
+				//TODO checking if the users exist or not
+				
+				//TODO if user exist, start the intent, otherwise display a toast
+				//saying user does not exist
+				Toast.makeText(mContext, userInputName + " "+userInputPass, Toast.LENGTH_SHORT).show();
+				
+				Intent loggedIntent = new Intent(mContext, /*class to start*/);
+				startActivity(loggedIntent);		
 			}
 		});
 		Button register = (Button) findViewById(R.id.register);
