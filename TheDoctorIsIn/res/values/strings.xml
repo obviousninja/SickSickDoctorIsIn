@@ -42,5 +42,6 @@
     <string name="number_of_questions">Total Asked:</string>
     <string name="number_of_answers">Total Answered:</string>
 	<string name="blank"> </string>
+	<string name="pickCategory">Pick A Category</string>
 
 </resources>
