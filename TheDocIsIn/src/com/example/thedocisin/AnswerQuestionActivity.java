@@ -19,6 +19,7 @@ public class AnswerQuestionActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_answer);
 		
 		questionText = (TextView) findViewById(R.id.answerQuestionText);
 		answer = (EditText) findViewById(R.id.answerAnswerEditText);

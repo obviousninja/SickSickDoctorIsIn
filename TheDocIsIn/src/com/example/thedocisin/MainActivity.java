@@ -2,12 +2,12 @@ package com.example.thedocisin;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 public class MainActivity extends Activity {
@@ -29,6 +29,9 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// Go to food question list
+				Intent i = new Intent(getApplicationContext(), QuestionList.class);
+				i.putExtra("Category", "Food");
+				startActivity(i);
 			}
 		});
 		
@@ -37,6 +40,9 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// Go to entertainment question list
+				Intent i = new Intent(getApplicationContext(), QuestionList.class);
+				i.putExtra("Category", "Entertainment");
+				startActivity(i);
 			}
 		});
 		
@@ -44,7 +50,10 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// Go to personal question list 	
+				// Go to personal question list
+				Intent i = new Intent(getApplicationContext(), QuestionList.class);
+				i.putExtra("Category", "Personal");
+				startActivity(i);
 			}
 		});
 		
@@ -52,7 +61,10 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// Go to sports question list 
+				// Go to sports question list
+				Intent i = new Intent(getApplicationContext(), QuestionList.class);
+				i.putExtra("Category", "Sports");
+				startActivity(i);
 			}
 		});
 		
@@ -60,7 +72,10 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// Go to religion question list 
+				// Go to religion question list
+				Intent i = new Intent(getApplicationContext(), QuestionList.class);
+				i.putExtra("Category", "Religion");
+				startActivity(i);
 			}
 		});
 		
@@ -68,7 +83,10 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// Go to other question list 
+				// Go to other question list
+				Intent i = new Intent(getApplicationContext(), QuestionList.class);
+				i.putExtra("Category", "Other");
+				startActivity(i);
 			}
 		});
 		

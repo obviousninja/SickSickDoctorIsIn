@@ -42,6 +42,14 @@
             android:name=".AskQuestionActivity"
             android:label="AskQActivity">
         </activity>
+        <activity 
+            android:name=".QuestionList"
+            android:label="QListActivity">
+        </activity>
+        <activity 
+            android:name=".QuestionView"
+            android:label="QViewActivity">
+        </activity>
     </application>
 
 </manifest>

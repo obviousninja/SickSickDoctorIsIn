@@ -23,12 +23,38 @@ public class AskQuestionActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ask);
 
+		Intent parentIntent = getIntent();
+		String mCategory = parentIntent.getStringExtra("Category");
+
 		enterQuestion = (EditText) findViewById(R.id.askEnterQuestion);
 		categorySpinner = (Spinner) findViewById(R.id.askCategorySpinner);
 		askByLocation = (CheckBox) findViewById(R.id.askByLocation);
 		cancelButton = (Button) findViewById(R.id.askCancelButton);
 		submitButton = (Button) findViewById(R.id.askSubmitButton);
 
+
+		switch(mCategory){
+		case "Sports":
+			categorySpinner.setSelection(0);
+			break;
+		case "Entertainment":
+			categorySpinner.setSelection(1);
+			break;
+		case "Food":
+			categorySpinner.setSelection(2);
+			break;
+		case "Personal":
+			categorySpinner.setSelection(3);
+			break;
+		case "Religion":
+			categorySpinner.setSelection(4);
+			break;
+		case "Other":
+			categorySpinner.setSelection(5);
+			break;
+		default:
+			break;
+		}
 		cancelButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				finish();
