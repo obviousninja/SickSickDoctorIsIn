@@ -18,6 +18,7 @@ public class Logger extends Activity {
 	String userInputName;
 	String userInputPass;
 	
+	private HTTPServicesTask serviceHelper;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +26,12 @@ public class Logger extends Activity {
 		setContentView(R.layout.activity_logger);
 		
 		mContext = getApplicationContext();
-
+		serviceHelper = HTTPServicesTask.getInstance(mContext);
+		serviceHelper.setLogger(this);
+		
 		Button login = (Button) findViewById(R.id.loginButton);
 		login.setOnClickListener(new View.OnClickListener() {
+			
 			
 			@Override
 			public void onClick(View v) {
@@ -37,15 +41,20 @@ public class Logger extends Activity {
 				EditText userp = (EditText) findViewById(R.id.password);
 				userInputPass = userp.getText().toString();
 				
-				
 				//TODO checking if the users exist or not
+				serviceHelper.verifyUserPass(userInputName, userInputPass);
+				
 				
 				//TODO if user exist, start the intent, otherwise display a toast
 				//saying user does not exist
-				Toast.makeText(mContext, userInputName + " "+userInputPass, Toast.LENGTH_SHORT).show();
 				
-				Intent loggedIntent = new Intent(mContext, MainActivity.class);
-				startActivity(loggedIntent);		
+				/************* 	CODE MOVED **************/
+//				Toast.makeText(mContext, userInputName + " "+userInputPass, Toast.LENGTH_SHORT).show();
+//				
+//				Intent loggedIntent = new Intent(mContext, MainActivity.class);
+//				startActivity(loggedIntent);
+				/***************************************/
+				
 			}
 		});
 		Button register = (Button) findViewById(R.id.register);
@@ -61,12 +70,18 @@ public class Logger extends Activity {
 			}
 		});
 	}
+	
+	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if(requestCode == REGISTRATION_REQUEST){
 			if(resultCode == RESULT_OK){
 				//TODO do something with the intent data from registerUser activity if there are any
-				
+				Toast.makeText(mContext, "Registration Complete. Please Login", Toast.LENGTH_SHORT).show();
+			}else if(resultCode == RegisterUser.RESULT_FAILED){
+				Toast.makeText(mContext, "Username Already Exists", Toast.LENGTH_SHORT).show();	
+			}else if(resultCode == RESULT_CANCELED){
+				Toast.makeText(mContext, "Registration Cancelled...", Toast.LENGTH_SHORT).show();	
 			}
 		}
 	}
@@ -88,4 +103,19 @@ public class Logger extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	
+	public void verifyUserPass(boolean verified){
+		if(verified){
+			Toast.makeText(mContext, "Logging in...", Toast.LENGTH_SHORT).show();
+			serviceHelper.setCurrentUser(userInputName);
+			Intent loggedIntent = new Intent(mContext, MainActivity.class);
+			startActivity(loggedIntent);	
+		}else{
+			Toast.makeText(mContext, "Invalid user/password combination", Toast.LENGTH_SHORT).show();
+		}
+	}
+	
+	
+	
 }

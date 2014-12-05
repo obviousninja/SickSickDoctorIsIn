@@ -60,14 +60,17 @@ public class QuestionListAdapter extends BaseAdapter {
 		}
 		
 		final TextView titleView = (TextView) itemLayout.findViewById(R.id.question_list_item_title);
-		titleView.setText(item.getTitle());
+//		titleView.setText(item.getTitle());
+		titleView.setText("Here's a title");
+
+		
 		
 		itemLayout.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
 				Intent questionViewIntent = new Intent(mContext, QuestionView.class);
-				questionViewIntent.fillIn(item.toIntent(),0);
+				questionViewIntent.fillIn(item.packageToIntent(),0);
 				
 				mContext.startActivity(questionViewIntent);
 			}

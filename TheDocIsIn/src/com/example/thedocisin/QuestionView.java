@@ -21,15 +21,15 @@ public class QuestionView extends Activity {
 		setContentView(R.layout.activity_question_view);
 		mContext = getApplicationContext();
 		Intent i = getIntent();
-		final Question theQuestion = Question.questionFromIntent(i);
+		final Question theQuestion = new Question(i);
 		
 		final TextView titleView = (TextView) findViewById(R.id.question_view_title);
 		final TextView descriptionView = (TextView) findViewById(R.id.question_view_description);
 		final ListView answersView = (ListView) findViewById(R.id.question_view_answers);
 		QuestionViewAdapter answersAdapter = new QuestionViewAdapter(mContext);
 		
-		titleView.setText(theQuestion.getTitle());
-		descriptionView.setText(theQuestion.getDescription());
+//		titleView.setText(theQuestion.getTitle());
+		descriptionView.setText(theQuestion.getqTxt());
 		descriptionView.setMovementMethod(new ScrollingMovementMethod());
 		
 		View header = View.inflate(getApplicationContext(), R.layout.question_view_header, null);
@@ -41,7 +41,7 @@ public class QuestionView extends Activity {
 				// TODO This should start the AnswerQuestion activity.
 				// The question to be answered is theQuestion.
 				Intent answerViewIntent = new Intent(getApplicationContext(),AnswerQuestionActivity.class);
-				answerViewIntent.fillIn(theQuestion.toIntent(), 0);
+//				answerViewIntent.fillIn(theQuestion.toIntent(), 0);
 				QuestionView.this.startActivity(answerViewIntent);
 				
 			}
@@ -49,7 +49,11 @@ public class QuestionView extends Activity {
 		});
 		
 		answersView.addHeaderView(header);
-		answersAdapter.addAll(theQuestion.getAnswers());
+		// Access database to add questions here.
+		
+		
+		
+//		answersAdapter.addAll(theQuestion.getAnswers());
 		answersView.setAdapter(answersAdapter);
 	}
 	

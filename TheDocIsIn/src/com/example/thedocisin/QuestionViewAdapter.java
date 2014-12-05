@@ -2,7 +2,7 @@ package com.example.thedocisin;
 
 import java.util.ArrayList;
 
-import com.example.thedocisin.Question.Answer;
+//import com.example.thedocisin.Question.Answer;
 
 import android.content.Context;
 import android.content.Intent;
@@ -60,8 +60,8 @@ public class QuestionViewAdapter extends BaseAdapter{
 		final TextView answerView = (TextView) itemLayout.findViewById(R.id.answerView);
 		final ImageButton upvoteButton = (ImageButton) itemLayout.findViewById(R.id.upvoteButton);
 		final ImageButton downvoteButton = (ImageButton) itemLayout.findViewById(R.id.downvoteButton);
-		scoreView.setText(Integer.toString(item.getScore()));
-		answerView.setText(item.getText());
+//		scoreView.setText(Integer.toString(item.getScore()));
+//		answerView.setText(item.getText());
 		answerView.setMovementMethod(new ScrollingMovementMethod());
 		
 		upvoteButton.setOnClickListener(new OnClickListener(){

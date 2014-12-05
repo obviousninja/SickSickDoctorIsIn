@@ -17,12 +17,17 @@ public class AskQuestionActivity extends Activity {
 	Spinner categorySpinner;
 	CheckBox askByLocation;
 	Button cancelButton, submitButton;
+	private HTTPServicesTask serviceHelper;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ask);
 
+		
+		serviceHelper = HTTPServicesTask.getInstance();
+		
+		
 		Intent parentIntent = getIntent();
 		String mCategory = parentIntent.getStringExtra("Category");
 
@@ -72,6 +77,12 @@ public class AskQuestionActivity extends Activity {
 					Toast.makeText(getApplicationContext(), "Submitting question...", Toast.LENGTH_LONG).show();
 					
 					//TO-DO add question to question list
+					String questionText = enterQuestion.getText().toString();
+					String category = categorySpinner.getSelectedItem().toString();
+					System.out.println("QUESTION TEXT:   " + questionText);
+					System.out.println("Category:   " + category);
+					
+					serviceHelper.askQuestion(serviceHelper.getUserID(), questionText, category);
 					
 					finish();
 				}

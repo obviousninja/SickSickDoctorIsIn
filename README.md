@@ -138,6 +138,18 @@ Documentation:
 HTTPServicesTask has public methods like verifyUserInfo and postQuestion that will be called from other classes. These are requests which will use a private AsyncTask to contact a database. Each of these public methods will call the doInBackground() of the AsyncTask. 
 
 
+DBSim
+
+Status:
+
+In creation. Currently will only support 1 answer per question.
+
+Documentation:
+
+The Database Simulator (DBSim) creates Two tables, one contaning user info, and the other containing question info, using the SQLiteOpenHelper. 
+The first (user info) contains the following columns: UserName, UserID, Password, QuestionsAsked, QuestionsAnswered, AnswerScores
+The second (question info) contains the following columns: QuestionID, AskerUserID, QuestionText, AnswerUserID, AnswerText, AnswerScore.
+
 
 
 Question

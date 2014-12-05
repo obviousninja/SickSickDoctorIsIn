@@ -28,14 +28,22 @@ public class QuestionList extends ListActivity {
 	QuestionListAdapter mAdapter;	
 	Context mContext;
 	String mCategory;
+	private ArrayList<Question> questions;
+	private HTTPServicesTask serviceHelper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mContext = getApplicationContext();
 		mAdapter = new QuestionListAdapter(this);
-		mAdapter.setItems(populateQuestions());
+//		mAdapter.setItems(populateQuestions());
 		mCategory = getIntent().getStringExtra("Category");
+		
+		serviceHelper = HTTPServicesTask.getInstance();
+		serviceHelper.setQuestionList(this);
+		serviceHelper.getQuestions(mCategory);
+		
+		
 		
 		View header = View.inflate(mContext, R.layout.question_list_header, null);
 		View askButton = header.findViewById(R.id.question_list_ask_button);
@@ -73,14 +81,20 @@ public class QuestionList extends ListActivity {
 		
 		//TODO: Implement this function such that it accesses the database
 		//and populates a List of Questions.
-		for(int i = 0; i < 25; i++){
-			Question sampleQuestion = new Question();
-			sampleQuestion.setTitle("Sample Question Title No. " + (i+1));
-			sampleQuestion.setDescription("This is a sample question body.");
-			sampleQuestion.addAnswer("I am a sample answerer.");
-			sampleQuestion.addAnswer("This is a bad question.");
-			questions.add(sampleQuestion);
-		}
+		
+		
+		
+		
+		
+		
+//		for(int i = 0; i < 25; i++){
+//			Question sampleQuestion = new Question();
+//			sampleQuestion.setTitle("Sample Question Title No. " + (i+1));
+//			sampleQuestion.setDescription("This is a sample question body.");
+//			sampleQuestion.addAnswer("I am a sample answerer.");
+//			sampleQuestion.addAnswer("This is a bad question.");
+//			questions.add(sampleQuestion);
+//		}
 		
 		
 		return questions;
@@ -96,5 +110,16 @@ public class QuestionList extends ListActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	public void setQuestions(ArrayList<Object> result) {
+		ArrayList<Question> questions = new ArrayList<Question>();
+		
+		for(int i = 1; i < result.size(); i++){
+			questions.add((Question) result.get(i));
+		}
+		this.questions = questions;
+		mAdapter.setItems(this.questions);
+	
 	}
 }
