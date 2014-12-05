@@ -6,6 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background = "#B59147"
     >
 	<LinearLayout 
 	    android:layout_width = "match_parent"
@@ -25,7 +26,7 @@
         android:layout_width ="match_parent"
         android:layout_height = "wrap_content"
         android:id="@+id/nickname"
-        android:hint="nick name"
+        android:drawableLeft="@drawable/nickname"
 		/>
 	<TextView
 	    android:layout_width = "wrap_content"
@@ -37,7 +38,7 @@
 	    android:layout_width = "match_parent"
 	    android:layout_height = "wrap_content"
 	    android:id="@+id/email"
-	    android:hint= "email"
+	    android:drawableLeft="@drawable/mail"
 	    android:inputType="textEmailAddress"
 		/>
 	<TextView
@@ -51,6 +52,7 @@
 	    android:layout_height = "wrap_content"
 	    android:id="@+id/regpassword1"
 	    android:inputType="textPassword"
+	    android:drawableLeft="@drawable/lock"
 		/>
 	    <TextView
 	    android:layout_width = "wrap_content"
@@ -63,6 +65,7 @@
 	    android:layout_height = "wrap_content"
 	    android:id="@+id/regpassword2"
 	    android:inputType="textPassword"
+	    android:drawableLeft="@drawable/lock"
 		/>
 	    
 	</LinearLayout>

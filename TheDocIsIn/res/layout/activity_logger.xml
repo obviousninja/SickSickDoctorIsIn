@@ -6,6 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#B59147"
     tools:context="com.example.thedocisin.Logger" >
 
    <LinearLayout 
@@ -19,14 +20,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/displayUserName"
-     	  android:text="Username:" 
+     	  android:text="Username" 
      	
         />
     <EditText
         android:layout_width ="match_parent"
         android:layout_height = "wrap_content"
         android:id="@+id/username"
-        android:hint="username"
+        android:drawableLeft="@drawable/username"
+       
 		/>
 	<TextView
 	    android:layout_width = "wrap_content"
@@ -38,6 +40,7 @@
 	    android:layout_width = "match_parent"
 	    android:layout_height = "wrap_content"
 	    android:id="@+id/password"
+	    android:drawableLeft="@drawable/lock"
 	     android:inputType="textPassword"
 		/>    
 	    
