@@ -8,17 +8,20 @@ import android.os.Parcelable;
 
 public class Answer  {
 	
+	private final String AID_KEY = "AID";
 	private final String QID_KEY = "QID";
 	private final String ANS_ID_KEY = "ANS_ID";
 	private final String A_TEXT_KEY = "A_TEXT";
 	private final String A_SCORE_KEY = "A_SCORE";
 	
+	private int aid;
 	private int qid;
 	private String ansID;
 	private String aTxt;
 	private int aScr;
 	
-	public Answer(int qid, String ansid, String atxt, int aScr){
+	public Answer(int aid, int qid, String ansid, String atxt, int aScr){
+		this.setaid(aid);
 		this.setqid(qid);
 		this.setansID(ansid);
 		this.setaTxt(atxt);
@@ -27,6 +30,7 @@ public class Answer  {
 	
 	public Answer(Intent intent){
 		Bundle bundle = intent.getExtras();
+		this.aid = bundle.getInt(AID_KEY, aid);
 		this.qid = bundle.getInt(QID_KEY, qid);
 		this.ansID = bundle.getString(ANS_ID_KEY, ansID);
 		this.aTxt = bundle.getString(A_TEXT_KEY, aTxt);
@@ -43,7 +47,14 @@ public class Answer  {
 		return intent;
 	}
 	
-
+	public int getaid(){
+		return aid;
+	}
+	
+	public void setaid(int aid){
+		this.aid = aid;
+	}
+	
 	public int getqid() {
 		return qid;
 	}
@@ -77,7 +88,7 @@ public class Answer  {
 	}
 
 	public String toString(){
-		String result = this.qid +"..."+  
+		String result = this.aid + "..."  + this.qid +"..."+  
 	this.ansID +"..."+ this.aTxt +"..."+ this.aScr +"...";
 		return result;
 	}

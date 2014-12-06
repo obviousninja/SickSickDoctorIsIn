@@ -25,6 +25,7 @@ public class AnswerQuestionActivity extends Activity {
 		
 		Intent intent = getIntent();
 		
+		serviceHelper = HTTPServicesTask.getInstance();
 		qid = intent.getIntExtra("qid", -1);
 		
 		
@@ -45,6 +46,9 @@ public class AnswerQuestionActivity extends Activity {
 					Toast.makeText(getApplicationContext(), "Answer needs to be longer", Toast.LENGTH_LONG).show();
 				} else {
 					//Add answer to wherever it needs to go
+					System.out.println("QID " + qid);
+					System.out.println("CURRUS " + serviceHelper.getCurrentUser());
+					System.out.println("Answer " + answer.getText().toString());
 					serviceHelper.answerQuestion(serviceHelper.getCurrentUser(), qid, answer.getText().toString());
 					
 					finish();

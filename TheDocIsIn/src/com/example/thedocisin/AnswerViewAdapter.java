@@ -20,12 +20,13 @@ public class AnswerViewAdapter extends BaseAdapter{
 
 	ArrayList<Answer> items;
 	Context mContext;
-	private int qid;
+	private int aid;
 	private HTTPServicesTask serviceHelper;
 	
 	public AnswerViewAdapter(Context context){
 		mContext = context;
 		items = new ArrayList<Answer>();
+		serviceHelper = HTTPServicesTask.getInstance();
 	}
 	
 	public void addAll(ArrayList<Answer> arrayList){
@@ -58,8 +59,7 @@ public class AnswerViewAdapter extends BaseAdapter{
 			itemLayout = (RelativeLayout) View.inflate(mContext,  R.layout.question_view_answer, null);
 		}
 		
-		serviceHelper = HTTPServicesTask.getInstance();
-		
+		aid = item.getaid();
 		
 		final TextView scoreView = (TextView) itemLayout.findViewById(R.id.score);
 		final TextView answerView = (TextView) itemLayout.findViewById(R.id.answerView);
@@ -74,7 +74,9 @@ public class AnswerViewAdapter extends BaseAdapter{
 			@Override
 			public void onClick(View v) {
 				// TODO Implement upvotes.
-//				serviceHelper.changeScore(qid, "up");
+				serviceHelper.changeScore(aid, "up");
+				item.setaScr(item.getaScr() + 1);
+				scoreView.setText(Integer.toString(item.getaScr()));
 			}
 			
 		});
@@ -84,7 +86,9 @@ public class AnswerViewAdapter extends BaseAdapter{
 			@Override
 			public void onClick(View v) {
 				// TODO Implement downvotes.
-//				serviceHelper.changeScore(qid, "dn");				
+				serviceHelper.changeScore(aid, "dn");		
+				item.setaScr(item.getaScr() - 1);
+				scoreView.setText(Integer.toString(item.getaScr()));
 			}
 			
 		});

@@ -9,18 +9,20 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class AnswersDBSim extends SQLiteOpenHelper{
 	
 	final static String TABLE_NAME = "AnswerInfo";
-	final static String QID = "_id";
-	final static String ANS_ID = "a_id";
+	final static String AID = "aid";
+	final static String QID = "qid";
+	final static String ANS_ID = "ans_id";
 	final static String ATXT = "a_text";
 	final static String ASCR = "a_scr";
-	final static String[] columns = { QID, ANS_ID, ATXT, ASCR};
+	final static String[] columns = { AID, QID, ANS_ID, ATXT, ASCR};
 	
 	
 	
 	final private static String CREATE_CMD =
 
-	"CREATE TABLE " + TABLE_NAME +  " (" + QID
-			+ " INTEGER , "
+	"CREATE TABLE " + TABLE_NAME +  " (" 
+			+ AID + " INTEGER PRIMARY KEY AUTOINCREMENT , "
+			+ QID + " INTEGER , "
 			+ ANS_ID + " TEXT , "
 			+ ATXT +" TEXT  , "
 			+ ASCR + " INTEGER )";

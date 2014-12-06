@@ -92,6 +92,10 @@ public class DBManager {
 			result = getQuestions(split);
 		}else if(input.contains("getAnswers")){
 			result = getAnswers(split);
+		}else if(input.contains("answerQuestion")){
+			result = answerQuestion(split);
+		}else if(input.contains("changeScore")){
+			result = changeScore(split);
 		}
 		
 		System.out.println("printing result");
@@ -100,7 +104,82 @@ public class DBManager {
 		}
 		return result;
 	}
+	
+	private ArrayList<Object> changeScore(String[] split){
+		ArrayList<Object> result = new ArrayList<Object>();
+		String str = "";
+		String dir = "";
+		for(int i = 0; i < split.length; i++){
+			if(split[i].contains("aid=")){
+				str = split[i].split("=")[1];
+			}else if(split[i].contains("dir=")){
+				dir = split[i].split("=")[1];
+			}
+		}
+		
+		Cursor aC = adatabase.query(AnswersDBSim.TABLE_NAME,
+				new String[] {AnswersDBSim.AID, AnswersDBSim.ASCR}, 
+				AnswersDBSim.AID + "=?", 
+				new String[] {str}, 
+				null, null, null, null);
 
+		aC.moveToPosition(0);
+
+		int oldVal = aC.getInt(1);
+		System.out.println("old value: " + oldVal);
+		
+		ContentValues values = new ContentValues();
+		values.put(AnswersDBSim.ASCR, oldVal + ( (dir.equals("up")? 1:-1)));
+
+		adatabase.update(AnswersDBSim.TABLE_NAME, 
+				values, 
+				AnswersDBSim.AID + "=?", 
+				new String[] {str});
+		
+		result.add(true);
+		return result;
+	
+	}
+
+	
+	private ArrayList<Object> answerQuestion(String[] split){
+		ArrayList<Object> result = new ArrayList<Object>();
+		String str = "";
+		String atxt = "";
+		String ansid = "";
+		int qid;
+		
+		
+		
+		for(int i = 0; i < split.length; i++){
+			if(split[i].contains("qid=")){
+				str = split[i].split("=")[1];
+			}else if(split[i].contains("atxt=")){
+				atxt = split[i].split("=")[1];
+			}else if(split[i].contains("ansid")){
+				ansid = split[i].split("=")[1];
+			}
+		}
+		
+		qid = Integer.parseInt(str);
+		
+		System.out.println("ANSWERING QUESTION WITH ID "  + str + " AND TEXT: " + atxt);
+		
+		ContentValues values = new ContentValues();
+		
+		values.clear();
+		values.put(AnswersDBSim.QID, qid);
+		values.put(AnswersDBSim.ANS_ID, ansid);
+		values.put(AnswersDBSim.ATXT, atxt);
+		values.put(AnswersDBSim.ASCR, 0);
+		System.out.println("INSERTING THE answer.........." + adatabase.insert(AnswersDBSim.TABLE_NAME, null, values));
+		
+		result.add(true);
+		System.out.println(" AND THE WINNER ISSSSSS : " + result);
+		return result;	
+		
+	}
+	
 	
 	private ArrayList<Object> getAnswers(String[] split){
 		ArrayList<Object> result = new ArrayList<Object>();
@@ -126,7 +205,7 @@ public class DBManager {
 		System.out.println("FOUND  " + aC.getCount() + "  ANSWERS");
 		
 		while(aC.moveToNext()){
-			Answer a = new Answer(aC.getInt(0), aC.getString(1), aC.getString(2), aC.getInt(3));
+			Answer a = new Answer(aC.getInt(0), aC.getInt(1), aC.getString(2), aC.getString(3), aC.getInt(4));
 			result.add(a);
 		}
 		
@@ -371,83 +450,83 @@ public class DBManager {
 		
 		
 		/////////   USER_ID, USER_NAME, PASSWORD, QASK, QANS, ASCR}
-//	   ContentValues values = new ContentValues();
-//	   values.put(UsersDBSim.USER_ID, "user1");
-//	   values.put(UsersDBSim.USER_NAME, "user1");
-//	   values.put(UsersDBSim.PASSWORD, "pass");
-//	   values.put(UsersDBSim.QASK, 5);
-//	   values.put(UsersDBSim.QANS, 6);
-//	   values.put(UsersDBSim.ASCR, 5);
-//	   
-//	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
-//
-//	   values.clear();
-//	   values.put(UsersDBSim.USER_ID, "user2@user.u");
-//	   values.put(UsersDBSim.USER_NAME, "user2");
-//	   values.put(UsersDBSim.PASSWORD, "pass");
-//	   values.put(UsersDBSim.QASK, 14);
-//	   values.put(UsersDBSim.QANS, 3);
-//	   values.put(UsersDBSim.ASCR, 12);
-//
-//	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
-//	   
-//	   values.clear();
-//	   values.put(UsersDBSim.USER_ID, "q");
-//	   values.put(UsersDBSim.USER_NAME, "q");
-//	   values.put(UsersDBSim.PASSWORD, "q");
-//	   values.put(UsersDBSim.QASK, 14);
-//	   values.put(UsersDBSim.QANS, 3);
-//	   values.put(UsersDBSim.ASCR, 12);
-//
-//	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
-//	   
-//	   
-//	   values.clear();
-//	   values.put(QuestionsDBSim.ASK_ID, "user1@user.u");
-//	   values.put(QuestionsDBSim.QTXT, "Who was Julius Caesar?");
-//	   values.put(QuestionsDBSim.CAT, "Other");
-//	   System.out.println(qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values));
-//	   
-//	   values.clear();
-//	   values.put(QuestionsDBSim.ASK_ID, "user1@user.u");
-//	   values.put(QuestionsDBSim.QTXT, "What time is the Maryland Basketball game?");
-//	   values.put(QuestionsDBSim.CAT, "Sports");
-//	   qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values);
-//	   
-//	   
-//	   values.clear();
-//	   values.put(QuestionsDBSim.ASK_ID, "user1@user.u");
-//	   values.put(QuestionsDBSim.QTXT, "How many teams are in the NFL?");
-//	   values.put(QuestionsDBSim.CAT, "Sports");
-//	   qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values);
-//	   
-//	   values.clear();
-//	   values.put(AnswersDBSim.QID, 1);
-//	   values.put(AnswersDBSim.ANS_ID, "idiot@doesntknowit.com");
-//	   values.put(AnswersDBSim.ATXT, "Inventer of the Caesar salad.");
-//	   values.put(AnswersDBSim.ASCR, 1);
-//	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
-//	   
-//	   values.clear();
-//	   values.put(AnswersDBSim.QID, 2);
-//	   values.put(AnswersDBSim.ANS_ID, "sportsguy@users.us");
-//	   values.put(AnswersDBSim.ATXT, "8pm Eastern.");
-//	   values.put(AnswersDBSim.ASCR, 4);
-//	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
-//	   
-//	   values.clear();
-//	   values.put(AnswersDBSim.QID, 3);
-//	   values.put(AnswersDBSim.ANS_ID, "sportsguy@users.us");
-//	   values.put(AnswersDBSim.ATXT, "32. 16 in the AFC and 16 in the NFC.");
-//	   values.put(AnswersDBSim.ASCR, 5);
-//	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
-//
-//	   values.clear();
-//	   values.put(AnswersDBSim.QID, 3);
-//	   values.put(AnswersDBSim.ANS_ID, "ass@ho.le");
-//	   values.put(AnswersDBSim.ATXT, "What're you, some kind of idiot?");
-//	   values.put(AnswersDBSim.ASCR, 1);
-//	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
+	   ContentValues values = new ContentValues();
+	   values.put(UsersDBSim.USER_ID, "user1");
+	   values.put(UsersDBSim.USER_NAME, "user1");
+	   values.put(UsersDBSim.PASSWORD, "pass");
+	   values.put(UsersDBSim.QASK, 5);
+	   values.put(UsersDBSim.QANS, 6);
+	   values.put(UsersDBSim.ASCR, 5);
+	   
+	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
+
+	   values.clear();
+	   values.put(UsersDBSim.USER_ID, "user2@user.u");
+	   values.put(UsersDBSim.USER_NAME, "user2");
+	   values.put(UsersDBSim.PASSWORD, "pass");
+	   values.put(UsersDBSim.QASK, 14);
+	   values.put(UsersDBSim.QANS, 3);
+	   values.put(UsersDBSim.ASCR, 12);
+
+	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
+	   
+	   values.clear();
+	   values.put(UsersDBSim.USER_ID, "q");
+	   values.put(UsersDBSim.USER_NAME, "q");
+	   values.put(UsersDBSim.PASSWORD, "q");
+	   values.put(UsersDBSim.QASK, 14);
+	   values.put(UsersDBSim.QANS, 3);
+	   values.put(UsersDBSim.ASCR, 12);
+
+	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
+	   
+	   
+	   values.clear();
+	   values.put(QuestionsDBSim.ASK_ID, "user1@user.u");
+	   values.put(QuestionsDBSim.QTXT, "Who was Julius Caesar?");
+	   values.put(QuestionsDBSim.CAT, "Other");
+	   System.out.println(qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values));
+	   
+	   values.clear();
+	   values.put(QuestionsDBSim.ASK_ID, "user1@user.u");
+	   values.put(QuestionsDBSim.QTXT, "What time is the Maryland Basketball game?");
+	   values.put(QuestionsDBSim.CAT, "Sports");
+	   qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values);
+	   
+	   
+	   values.clear();
+	   values.put(QuestionsDBSim.ASK_ID, "user1@user.u");
+	   values.put(QuestionsDBSim.QTXT, "How many teams are in the NFL?");
+	   values.put(QuestionsDBSim.CAT, "Sports");
+	   qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values);
+	   
+	   values.clear();
+	   values.put(AnswersDBSim.QID, 1);
+	   values.put(AnswersDBSim.ANS_ID, "idiot@doesntknowit.com");
+	   values.put(AnswersDBSim.ATXT, "Inventer of the Caesar salad.");
+	   values.put(AnswersDBSim.ASCR, 1);
+	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
+	   
+	   values.clear();
+	   values.put(AnswersDBSim.QID, 2);
+	   values.put(AnswersDBSim.ANS_ID, "sportsguy@users.us");
+	   values.put(AnswersDBSim.ATXT, "8pm Eastern.");
+	   values.put(AnswersDBSim.ASCR, 4);
+	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
+	   
+	   values.clear();
+	   values.put(AnswersDBSim.QID, 3);
+	   values.put(AnswersDBSim.ANS_ID, "sportsguy@users.us");
+	   values.put(AnswersDBSim.ATXT, "32. 16 in the AFC and 16 in the NFC.");
+	   values.put(AnswersDBSim.ASCR, 5);
+	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
+
+	   values.clear();
+	   values.put(AnswersDBSim.QID, 3);
+	   values.put(AnswersDBSim.ANS_ID, "ass@ho.le");
+	   values.put(AnswersDBSim.ATXT, "What're you, some kind of idiot?");
+	   values.put(AnswersDBSim.ASCR, 1);
+	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
 	}
 	
 	

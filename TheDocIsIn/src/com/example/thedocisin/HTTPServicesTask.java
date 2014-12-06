@@ -74,7 +74,11 @@ public class HTTPServicesTask {
 	}
 	
 	public void answerQuestion(String userid, int qid, String atxt){
-		new DatabaseAccessor().execute(new String[] {"answerQuestion", qid + "", atxt});
+		new DatabaseAccessor().execute(new String[] {"answerQuestion", qid + "", getCurrentUser(), atxt});
+	}
+	
+	public void changeScore(int aid, String updown){
+		new DatabaseAccessor().execute(new String[] {"changeScore", aid + "", updown});
 	}
 
 
@@ -118,7 +122,12 @@ public class HTTPServicesTask {
 				ArrayList<Object> res = dbmanager.request(reqString);
 				result.addAll(res);
 			}else if(params[0].equals("answerQuestion")){
-				String reqString = url + "&req=" + params[0] + "&qid=" + params[1] + "&atxt=" + params[2];
+				String reqString = url + "&req=" + params[0] + "&qid=" + params[1] + 
+						"&ansid=" + params[2] + "&atxt=" + params[3];
+				ArrayList<Object> res = dbmanager.request(reqString);
+				result.add(res.get(0));
+			}else if(params[0].equals("changeScore")){
+				String reqString = url + "&req=" + params[0] + "&aid=" + params[1] + "&dir=" + params[2];
 				ArrayList<Object> res = dbmanager.request(reqString);
 				result.add(res.get(0));
 			}

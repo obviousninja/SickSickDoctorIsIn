@@ -107,8 +107,9 @@ public class Logger extends Activity {
 	
 	public void verifyUserPass(boolean verified){
 		if(verified){
-			Toast.makeText(mContext, "Logging in...", Toast.LENGTH_SHORT).show();
+			Toast.makeText(mContext, "Logging in " + userInputName, Toast.LENGTH_SHORT).show();
 			serviceHelper.setCurrentUser(userInputName);
+
 			Intent loggedIntent = new Intent(mContext, MainActivity.class);
 			startActivity(loggedIntent);	
 		}else{
