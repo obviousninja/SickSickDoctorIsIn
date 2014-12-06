@@ -1,5 +1,7 @@
 package com.example.thedocisin;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +16,8 @@ import android.widget.TextView;
 public class QuestionView extends Activity {
 
 	Context mContext;
+	HTTPServicesTask serviceHelper;
+	AnswerViewAdapter answersAdapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +30,12 @@ public class QuestionView extends Activity {
 		final TextView titleView = (TextView) findViewById(R.id.question_view_title);
 		final TextView descriptionView = (TextView) findViewById(R.id.question_view_description);
 		final ListView answersView = (ListView) findViewById(R.id.question_view_answers);
-		QuestionViewAdapter answersAdapter = new QuestionViewAdapter(mContext);
+		answersAdapter = new AnswerViewAdapter(mContext);
+		
+		int qid = theQuestion.getqid();
+		serviceHelper = HTTPServicesTask.getInstance();
+		serviceHelper.setQuestionView(this);
+		serviceHelper.getAnswers(qid);
 		
 //		titleView.setText(theQuestion.getTitle());
 		descriptionView.setText(theQuestion.getqTxt());
@@ -49,7 +58,7 @@ public class QuestionView extends Activity {
 		});
 		
 		answersView.addHeaderView(header);
-		// Access database to add questions here.
+		// Access database to add answers here.
 		
 		
 		
@@ -77,4 +86,16 @@ public class QuestionView extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	public void setAnswers(ArrayList<Object> list){
+		System.out.println("Setting answers");
+		ArrayList<Answer> newlist = new ArrayList<Answer>();
+		for(int i = 1 ; i < list.size(); i++){
+			newlist.add(i, (Answer) list.get(i));
+			System.out.println("ANSWER  NUMBER  " + i + "   " + newlist.get(i));
+		}
+		answersAdapter.addAll(newlist);
+//		answersAdapter.(newlist);
+	}
+	
 }

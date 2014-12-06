@@ -3,8 +3,10 @@ package com.example.thedocisin;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Answer {
+public class Answer  {
 	
 	private final String QID_KEY = "QID";
 	private final String ANS_ID_KEY = "ANS_ID";
@@ -78,5 +80,7 @@ public class Answer {
 		String result = this.qid +"..."+  
 	this.ansID +"..."+ this.aTxt +"..."+ this.aScr +"...";
 		return result;
-	}	
+	}
+
+
 }

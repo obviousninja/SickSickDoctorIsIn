@@ -14,6 +14,7 @@ public class HTTPServicesTask {
 	private Logger logger;
 	private RegisterUser register;
 	private QuestionList qlist;
+	private QuestionView qview;
 	private String userID;
 	
 	public static HTTPServicesTask getInstance(Context context){
@@ -49,6 +50,7 @@ public class HTTPServicesTask {
 	public void setLogger(Logger logger){this.logger = logger;}
 	public void setRegister(RegisterUser register){this.register = register;}
 	public void setQuestionList(QuestionList qlist){this.qlist = qlist;}
+	public void setQuestionView(QuestionView qview){this.qview = qview;}
 	
 	public void verifyUserPass(String userid, String password) {
 		new DatabaseAccessor().execute(new String[] {"verifyUserPass", userid, password});
@@ -65,6 +67,10 @@ public class HTTPServicesTask {
 
 	public void getQuestions(String category) {
 		new DatabaseAccessor().execute(new String[] {"getQuestions", category});
+	}
+	
+	public void getAnswers(int qid){
+		new DatabaseAccessor().execute(new String[] {"getAnswers", qid + ""});
 	}
 	
 
@@ -103,11 +109,11 @@ public class HTTPServicesTask {
 			}else if(params[0].equals("getQuestions")){
 				String reqString = url + "&req=" + params[0] + "&cat=" + params[1];
 				ArrayList<Object> res = dbmanager.request(reqString);
-				for(int i = 0; i < res.size(); i++){
-					result.add(res.get(i));
-				}
-//				System.out.println(res);
-//				main.settext();
+				result.addAll(res);
+			}else if(params[0].equals("getAnswers")){
+				String reqString = url + "&req=" + params[0] + "&qid=" + params[1];
+				ArrayList<Object> res = dbmanager.request(reqString);
+				result.addAll(res);
 			}
 			
 			
@@ -121,12 +127,10 @@ public class HTTPServicesTask {
 				logger.verifyUserPass((Boolean) result.get(1));
 			}else if(result.get(0).equals("registerUser")){
 				register.verifyRegisterUser((Boolean) result.get(1));
-			}
-//			else if(result.get(0).equals("askQuestion")){
-//				MainActivity.askQuestion((Boolean) result.get(1));
-//			}
-			else if(result.get(0).equals("getQuestions")){
+			}else if(result.get(0).equals("getQuestions")){
 				qlist.setQuestions(result);
+			}else if(result.get(0).equals("getAnswers")){
+				qview.setAnswers(result);
 			}
 		}
 

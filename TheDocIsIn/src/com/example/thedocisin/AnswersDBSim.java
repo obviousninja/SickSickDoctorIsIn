@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class AnswersDBSim extends SQLiteOpenHelper{
 	
-	final static String TABLE_NAME = "QuestionInfo";
+	final static String TABLE_NAME = "AnswerInfo";
 	final static String QID = "_id";
 	final static String ANS_ID = "a_id";
 	final static String ATXT = "a_text";
@@ -25,7 +25,7 @@ public class AnswersDBSim extends SQLiteOpenHelper{
 			+ ATXT +" TEXT  , "
 			+ ASCR + " INTEGER )";
 
-	final private static String NAME = "question_db";
+	final private static String NAME = "answer_db";
 	final private static Integer VERSION = 1;
 	final private Context mContext;
 	private static AnswersDBSim sInstance;

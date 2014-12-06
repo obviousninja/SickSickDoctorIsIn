@@ -49,7 +49,6 @@ public class DBManager {
 		mQDBSim.getWritableDatabase().delete(QuestionsDBSim.TABLE_NAME, null, null);
 	}
 	
-
 	public Cursor getData(String databaseName){
 		if(databaseName.equals("UserInfo")){
 			return mUDBSim.readDB(udatabase);
@@ -60,6 +59,10 @@ public class DBManager {
 			return null;
 		}
 	}
+	
+	
+	
+	
 
 	public ArrayList<Object> request(String input) {
 		ArrayList<Object> result = null;
@@ -76,6 +79,8 @@ public class DBManager {
 			result = askQuestion(split);
 		}else if(input.contains("getQuestions")){
 			result = getQuestions(split);
+		}else if(input.contains("getAnswers")){
+			result = getAnswers(split);
 		}
 		
 		System.out.println("printing result");
@@ -85,6 +90,36 @@ public class DBManager {
 		return result;
 	}
 
+	
+	private ArrayList<Object> getAnswers(String[] split){
+		ArrayList<Object> result = new ArrayList<Object>();
+		int qid;
+		String str = "";
+		
+		
+		for(int i = 0 ; i < split.length; i++){
+			if(split[i].contains("qid=")){
+				str = split[i].split("=")[1];
+				break;
+			}
+		}
+				
+		qid = Integer.parseInt(str);
+		
+		Cursor aC = adatabase.query(AnswersDBSim.TABLE_NAME,
+				AnswersDBSim.columns,
+				AnswersDBSim.QID + "=?",
+				new String[] {str},
+				null, null, null, null);
+		
+		while(aC.moveToNext()){
+			Answer a = new Answer(aC.getInt(0), aC.getString(1), aC.getString(2), aC.getInt(3));
+			result.add(a);
+		}
+		
+		return result;
+		
+	}
 
 	private ArrayList<Object> getQuestions(String[] split) {
 		ArrayList<Object> result = new ArrayList<Object>();
