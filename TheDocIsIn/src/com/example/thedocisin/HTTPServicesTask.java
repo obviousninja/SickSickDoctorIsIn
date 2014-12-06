@@ -129,6 +129,10 @@ public class HTTPServicesTask {
 				register.verifyRegisterUser((Boolean) result.get(1));
 			}else if(result.get(0).equals("getQuestions")){
 				qlist.setQuestions(result);
+				
+				System.out.println(result);
+				
+				
 			}else if(result.get(0).equals("getAnswers")){
 				qview.setAnswers(result);
 			}

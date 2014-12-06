@@ -60,8 +60,8 @@ public class AnswerViewAdapter extends BaseAdapter{
 		final TextView answerView = (TextView) itemLayout.findViewById(R.id.answerView);
 		final ImageButton upvoteButton = (ImageButton) itemLayout.findViewById(R.id.upvoteButton);
 		final ImageButton downvoteButton = (ImageButton) itemLayout.findViewById(R.id.downvoteButton);
-//		scoreView.setText(Integer.toString(item.getScore()));
-//		answerView.setText(item.getText());
+		scoreView.setText(Integer.toString(item.getaScr()));
+		answerView.setText(item.getaTxt());
 		answerView.setMovementMethod(new ScrollingMovementMethod());
 		
 		upvoteButton.setOnClickListener(new OnClickListener(){

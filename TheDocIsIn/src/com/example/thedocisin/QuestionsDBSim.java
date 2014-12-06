@@ -13,13 +13,13 @@ public class QuestionsDBSim extends SQLiteOpenHelper{
 	final static String ASK_ID = "asker";
 	final static String QTXT = "q_text";
 	final static String CAT = "category";
-	final static String[] columns = { ASK_ID, QID, QTXT, CAT};	
+	final static String[] columns = {QID, ASK_ID, QTXT, CAT};	
 	
 	
 	final private static String CREATE_CMD =
 
 	"CREATE TABLE " + TABLE_NAME +  " (" + QID
-			+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
+			+ " INTEGER PRIMARY KEY AUTOINCREMENT not null, "
 			+ ASK_ID + " TEXT NOT NULL, "
 			+ QTXT + " TEXT NOT NULL, "
 			+ CAT + " TEXT NOT NULL)";
@@ -53,6 +53,7 @@ public class QuestionsDBSim extends SQLiteOpenHelper{
 
 	void deleteDatabase() {
 		mContext.deleteDatabase(NAME);
+		sInstance = null;
 	}
 	
 	

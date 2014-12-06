@@ -58,6 +58,7 @@ public class UsersDBSim extends SQLiteOpenHelper{
 
 	void deleteDatabase() {
 		mContext.deleteDatabase(NAME);
+		sInstance = null;
 	}
 	
 	

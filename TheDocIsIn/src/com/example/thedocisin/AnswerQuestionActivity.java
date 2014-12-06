@@ -15,6 +15,7 @@ public class AnswerQuestionActivity extends Activity {
 	TextView questionText;
 	EditText answer;
 	Button cancel, submit;
+	HTTPServicesTask serviceHelper;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class AnswerQuestionActivity extends Activity {
 					Toast.makeText(getApplicationContext(), "Answer needs to be longer", Toast.LENGTH_LONG).show();
 				} else {
 					//Add answer to wherever it needs to go
+					
 					finish();
 				}
 			}

@@ -88,11 +88,11 @@ public class QuestionView extends Activity {
 	}
 	
 	public void setAnswers(ArrayList<Object> list){
-		System.out.println("Setting answers");
+		System.out.println("Setting answers  " + list.size());
 		ArrayList<Answer> newlist = new ArrayList<Answer>();
 		for(int i = 1 ; i < list.size(); i++){
-			newlist.add(i, (Answer) list.get(i));
-			System.out.println("ANSWER  NUMBER  " + i + "   " + newlist.get(i));
+			newlist.add((Answer) list.get(i));
+			System.out.println("ANSWER  NUMBER  " + i + "   " + newlist.get(newlist.size() - 1 ));
 		}
 		answersAdapter.addAll(newlist);
 //		answersAdapter.(newlist);

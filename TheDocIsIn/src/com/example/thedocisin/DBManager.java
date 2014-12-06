@@ -32,6 +32,15 @@ public class DBManager {
 		mContext = context;
 
 		mUDBSim = UsersDBSim.getInstance(mContext);
+		mUDBSim.deleteDatabase();
+		mQDBSim = QuestionsDBSim.getInstance(mContext);
+		mQDBSim.deleteDatabase();
+		mADBSim = AnswersDBSim.getInstance(mContext);
+		mADBSim.deleteDatabase();
+
+		
+		
+		mUDBSim = UsersDBSim.getInstance(mContext);
 		udatabase = mUDBSim.getWritableDatabase();
 
 		mQDBSim = QuestionsDBSim.getInstance(mContext);
@@ -47,6 +56,7 @@ public class DBManager {
 	private void clearAll() {
 		mUDBSim.getWritableDatabase().delete(UsersDBSim.TABLE_NAME, null, null);
 		mQDBSim.getWritableDatabase().delete(QuestionsDBSim.TABLE_NAME, null, null);
+		mADBSim.getWritableDatabase().delete(AnswersDBSim.TABLE_NAME, null, null);
 	}
 	
 	public Cursor getData(String databaseName){
@@ -103,7 +113,7 @@ public class DBManager {
 				break;
 			}
 		}
-				
+		System.out.println("LOOKING FOR QID " + str);
 		qid = Integer.parseInt(str);
 		
 		Cursor aC = adatabase.query(AnswersDBSim.TABLE_NAME,
@@ -111,6 +121,8 @@ public class DBManager {
 				AnswersDBSim.QID + "=?",
 				new String[] {str},
 				null, null, null, null);
+		
+		System.out.println("FOUND  " + aC.getCount() + "  ANSWERS");
 		
 		while(aC.moveToNext()){
 			Answer a = new Answer(aC.getInt(0), aC.getString(1), aC.getString(2), aC.getInt(3));
@@ -142,6 +154,12 @@ public class DBManager {
 //		int qid, String askid, String qtxt, String ansid, String atxt, int aScr, String category
 		while(qC.moveToNext()){
 			Question q = new Question(qC.getInt(0), qC.getString(1), qC.getString(2), qC.getString(3));
+			System.out.println("DETECTING QID " + qC.getString(0));
+			System.out.println("DETECTING ASKID " + qC.getString(1));
+			System.out.println("DETECTING QTXT " + qC.getString(2));
+			System.out.println("DETECTING CAT " + qC.getString(3));
+			
+			System.out.println("question: " + q);
 			result.add(q);
 		}
 		
@@ -316,6 +334,16 @@ public class DBManager {
 
 	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
 	   
+	   values.clear();
+	   values.put(UsersDBSim.USER_ID, "q");
+	   values.put(UsersDBSim.USER_NAME, "q");
+	   values.put(UsersDBSim.PASSWORD, "q");
+	   values.put(UsersDBSim.QASK, 14);
+	   values.put(UsersDBSim.QANS, 3);
+	   values.put(UsersDBSim.ASCR, 12);
+
+	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
+	   
 	   
 	   values.clear();
 	   values.put(QuestionsDBSim.ASK_ID, "user1@user.u");
@@ -337,22 +365,32 @@ public class DBManager {
 	   qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values);
 	   
 	   values.clear();
-	   values.put(AnswersDBSim.QID, 0);
+	   values.put(AnswersDBSim.QID, 1);
 	   values.put(AnswersDBSim.ANS_ID, "idiot@doesntknowit.com");
 	   values.put(AnswersDBSim.ATXT, "Inventer of the Caesar salad.");
 	   values.put(AnswersDBSim.ASCR, 1);
-	   
-	   values.clear();
-	   values.put(AnswersDBSim.QID, 1);
-	   values.put(AnswersDBSim.ANS_ID, "sportsguy@users.us");
-	   values.put(AnswersDBSim.ATXT, "8pm Eastern.");
-	   values.put(AnswersDBSim.ASCR, 4);
+	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
 	   
 	   values.clear();
 	   values.put(AnswersDBSim.QID, 2);
 	   values.put(AnswersDBSim.ANS_ID, "sportsguy@users.us");
+	   values.put(AnswersDBSim.ATXT, "8pm Eastern.");
+	   values.put(AnswersDBSim.ASCR, 4);
+	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
+	   
+	   values.clear();
+	   values.put(AnswersDBSim.QID, 3);
+	   values.put(AnswersDBSim.ANS_ID, "sportsguy@users.us");
 	   values.put(AnswersDBSim.ATXT, "32. 16 in the AFC and 16 in the NFC.");
 	   values.put(AnswersDBSim.ASCR, 5);
+	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
+
+	   values.clear();
+	   values.put(AnswersDBSim.QID, 3);
+	   values.put(AnswersDBSim.ANS_ID, "ass@ho.le");
+	   values.put(AnswersDBSim.ATXT, "What're you, some kind of idiot?");
+	   values.put(AnswersDBSim.ASCR, 1);
+	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
 	}
 	
 	
