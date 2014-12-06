@@ -20,6 +20,8 @@ public class AnswerViewAdapter extends BaseAdapter{
 
 	ArrayList<Answer> items;
 	Context mContext;
+	private int qid;
+	private HTTPServicesTask serviceHelper;
 	
 	public AnswerViewAdapter(Context context){
 		mContext = context;
@@ -56,6 +58,9 @@ public class AnswerViewAdapter extends BaseAdapter{
 			itemLayout = (RelativeLayout) View.inflate(mContext,  R.layout.question_view_answer, null);
 		}
 		
+		serviceHelper = HTTPServicesTask.getInstance();
+		
+		
 		final TextView scoreView = (TextView) itemLayout.findViewById(R.id.score);
 		final TextView answerView = (TextView) itemLayout.findViewById(R.id.answerView);
 		final ImageButton upvoteButton = (ImageButton) itemLayout.findViewById(R.id.upvoteButton);
@@ -69,6 +74,7 @@ public class AnswerViewAdapter extends BaseAdapter{
 			@Override
 			public void onClick(View v) {
 				// TODO Implement upvotes.
+//				serviceHelper.changeScore(qid, "up");
 			}
 			
 		});
@@ -77,7 +83,8 @@ public class AnswerViewAdapter extends BaseAdapter{
 
 			@Override
 			public void onClick(View v) {
-				// TODO Implement downvotes.				
+				// TODO Implement downvotes.
+//				serviceHelper.changeScore(qid, "dn");				
 			}
 			
 		});

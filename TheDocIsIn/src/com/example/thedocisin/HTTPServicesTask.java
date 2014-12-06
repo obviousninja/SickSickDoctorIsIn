@@ -43,7 +43,7 @@ public class HTTPServicesTask {
 		dbmanager = DBManager.getInstance(mContext);
 	}
 	
-	public String getUserID() { return userID; }
+	public String getCurrentUser() { return userID; }
 
 	
 	public void setCurrentUser(String userID){this.userID = userID;};
@@ -73,6 +73,9 @@ public class HTTPServicesTask {
 		new DatabaseAccessor().execute(new String[] {"getAnswers", qid + ""});
 	}
 	
+	public void answerQuestion(String userid, int qid, String atxt){
+		new DatabaseAccessor().execute(new String[] {"answerQuestion", qid + "", atxt});
+	}
 
 
 	private class DatabaseAccessor extends AsyncTask<String, Void, ArrayList<Object>>{
@@ -114,6 +117,10 @@ public class HTTPServicesTask {
 				String reqString = url + "&req=" + params[0] + "&qid=" + params[1];
 				ArrayList<Object> res = dbmanager.request(reqString);
 				result.addAll(res);
+			}else if(params[0].equals("answerQuestion")){
+				String reqString = url + "&req=" + params[0] + "&qid=" + params[1] + "&atxt=" + params[2];
+				ArrayList<Object> res = dbmanager.request(reqString);
+				result.add(res.get(0));
 			}
 			
 			
@@ -129,10 +136,6 @@ public class HTTPServicesTask {
 				register.verifyRegisterUser((Boolean) result.get(1));
 			}else if(result.get(0).equals("getQuestions")){
 				qlist.setQuestions(result);
-				
-				System.out.println(result);
-				
-				
 			}else if(result.get(0).equals("getAnswers")){
 				qview.setAnswers(result);
 			}

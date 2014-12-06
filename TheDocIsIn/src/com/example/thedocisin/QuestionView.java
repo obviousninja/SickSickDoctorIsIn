@@ -51,6 +51,7 @@ public class QuestionView extends Activity {
 				// The question to be answered is theQuestion.
 				Intent answerViewIntent = new Intent(getApplicationContext(),AnswerQuestionActivity.class);
 //				answerViewIntent.fillIn(theQuestion.toIntent(), 0);
+				answerViewIntent.putExtra("qid", theQuestion.getqid());
 				QuestionView.this.startActivity(answerViewIntent);
 				
 			}

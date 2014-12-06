@@ -82,7 +82,7 @@ public class AskQuestionActivity extends Activity {
 					System.out.println("QUESTION TEXT:   " + questionText);
 					System.out.println("Category:   " + category);
 					
-					serviceHelper.askQuestion(serviceHelper.getUserID(), questionText, category);
+					serviceHelper.askQuestion(serviceHelper.getCurrentUser(), questionText, category);
 					
 					finish();
 				}

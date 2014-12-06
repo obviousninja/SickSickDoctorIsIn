@@ -19,6 +19,7 @@ public class DBManager {
 	private SQLiteDatabase adatabase;
 	private Context mContext;
 	private static DBManager sInstance;
+	private HTTPServicesTask serviceHelper;
 	
 	public static DBManager getInstance(Context context){
 		if(sInstance == null){
@@ -313,84 +314,140 @@ public class DBManager {
 	
 	
 	public void populate(){
+		int qid = 1;
+//		if(serviceHelper == null){
+//			serviceHelper = HTTPServicesTask.getInstance();
+//		}
+		
+//		serviceHelper.registerUser("user1", "pass", "monster");
+//		serviceHelper.registerUser("user2@user.com", "pass", "monster");
+//		serviceHelper.registerUser("user3@user.com", "pass", "monster");
+//		serviceHelper.registerUser("user4@user.com", "pass", "Mailman Joe");
+//		serviceHelper.registerUser("user5@user.com", "pass", "Unidentified User");
+//
+//		
+//		serviceHelper.askQuestion("user1", "Who was Julius Caesar?", "Other");
+//		serviceHelper.answerQuestion("user5@user.com", qid, "Some guy.");
+//		serviceHelper.answerQuestion("user2@user.com", qid, "Inventer of the Caesar Salad");
+//		serviceHelper.answerQuestion("user4@user.com", qid, "Main character of a Shakespeare play.");
+//		
+//		qid++;
+//		serviceHelper.askQuestion("user2@user.com", "What's the point of this app?", "Other");
+//
+//		qid++;
+//		serviceHelper.askQuestion("user3@user.com", "Something offenstive.", "Other");
+//
+//		qid++;
+//		serviceHelper.askQuestion("user1", "When is the Maryland Basketball game?", "Sports");
+//		serviceHelper.answerQuestion("user2@user.com", qid, "8pm Eastern.");
+//		serviceHelper.answerQuestion("user5@user.com", qid, "Who cares? They're going to lose anyways.");
+//		
+//		qid++;
+//		serviceHelper.askQuestion("user1", "How many teams are in the NFL?", "Sports");
+//		serviceHelper.answerQuestion("user2@user.com", qid, "32. 16 in the AFC and 16 in the NFC.");
+//		serviceHelper.answerQuestion("user5@user.com", qid, "Sounds like something a girl would ask.");
+//		serviceHelper.answerQuestion("user4@user.com", qid, "GOOOOO RAVENSSSSS!!!!");
+//		
+//		qid++;
+//		serviceHelper.askQuestion("user4@user.com", "How do they decide who makes it into the playoffs?",  "Sports");
+//		serviceHelper.answerQuestion("user5@user.com", qid, "It's a very complicated process. " +
+//				"I would suggest going to http://www.nfl.com.");
+//		serviceHelper.answerQuestion("user3@user.com", qid, "It's not that hard, it's based on season record.");
+//		
+//		qid++;
+//		serviceHelper.askQuestion("user3@user.com", "What's the score of the Cowboys game?", "Sports");
+//		serviceHelper.answerQuestion("user1", qid, "32-17 Cowboys.");
+//		serviceHelper.answerQuestion("user1", qid, "Nevermind, 32 - 24 Cowboys.");
+//		serviceHelper.answerQuestion("user1", qid, "Oh. The titans are going at it. 32-31");
+//		serviceHelper.answerQuestion("user1", qid, "Jesus. 38-32 Titans!");
+//		
+//		qid++;
+//		serviceHelper.askQuestion("user5@user.com", "When does baseball season really start/end?", "Sports");
+//		serviceHelper.answerQuestion("user4@user.com", qid, "You're an ass hole, 'unidentified user'.");
+//		
+//		qid++;
+//		serviceHelper.askQuestion("user1", "ughhhhh", "Sports");
+		
+		
+		
 		/////////   USER_ID, USER_NAME, PASSWORD, QASK, QANS, ASCR}
-	   ContentValues values = new ContentValues();
-	   values.put(UsersDBSim.USER_ID, "user1");
-	   values.put(UsersDBSim.USER_NAME, "user1");
-	   values.put(UsersDBSim.PASSWORD, "pass");
-	   values.put(UsersDBSim.QASK, 5);
-	   values.put(UsersDBSim.QANS, 6);
-	   values.put(UsersDBSim.ASCR, 5);
-	   
-	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
-
-	   values.clear();
-	   values.put(UsersDBSim.USER_ID, "user2@user.u");
-	   values.put(UsersDBSim.USER_NAME, "user2");
-	   values.put(UsersDBSim.PASSWORD, "pass");
-	   values.put(UsersDBSim.QASK, 14);
-	   values.put(UsersDBSim.QANS, 3);
-	   values.put(UsersDBSim.ASCR, 12);
-
-	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
-	   
-	   values.clear();
-	   values.put(UsersDBSim.USER_ID, "q");
-	   values.put(UsersDBSim.USER_NAME, "q");
-	   values.put(UsersDBSim.PASSWORD, "q");
-	   values.put(UsersDBSim.QASK, 14);
-	   values.put(UsersDBSim.QANS, 3);
-	   values.put(UsersDBSim.ASCR, 12);
-
-	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
-	   
-	   
-	   values.clear();
-	   values.put(QuestionsDBSim.ASK_ID, "user1@user.u");
-	   values.put(QuestionsDBSim.QTXT, "Who was Julius Caesar?");
-	   values.put(QuestionsDBSim.CAT, "Other");
-	   System.out.println(qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values));
-	   
-	   values.clear();
-	   values.put(QuestionsDBSim.ASK_ID, "user1@user.u");
-	   values.put(QuestionsDBSim.QTXT, "What time is the Maryland Basketball game?");
-	   values.put(QuestionsDBSim.CAT, "Sports");
-	   qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values);
-	   
-	   
-	   values.clear();
-	   values.put(QuestionsDBSim.ASK_ID, "user1@user.u");
-	   values.put(QuestionsDBSim.QTXT, "How many teams are in the NFL?");
-	   values.put(QuestionsDBSim.CAT, "Sports");
-	   qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values);
-	   
-	   values.clear();
-	   values.put(AnswersDBSim.QID, 1);
-	   values.put(AnswersDBSim.ANS_ID, "idiot@doesntknowit.com");
-	   values.put(AnswersDBSim.ATXT, "Inventer of the Caesar salad.");
-	   values.put(AnswersDBSim.ASCR, 1);
-	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
-	   
-	   values.clear();
-	   values.put(AnswersDBSim.QID, 2);
-	   values.put(AnswersDBSim.ANS_ID, "sportsguy@users.us");
-	   values.put(AnswersDBSim.ATXT, "8pm Eastern.");
-	   values.put(AnswersDBSim.ASCR, 4);
-	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
-	   
-	   values.clear();
-	   values.put(AnswersDBSim.QID, 3);
-	   values.put(AnswersDBSim.ANS_ID, "sportsguy@users.us");
-	   values.put(AnswersDBSim.ATXT, "32. 16 in the AFC and 16 in the NFC.");
-	   values.put(AnswersDBSim.ASCR, 5);
-	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
-
-	   values.clear();
-	   values.put(AnswersDBSim.QID, 3);
-	   values.put(AnswersDBSim.ANS_ID, "ass@ho.le");
-	   values.put(AnswersDBSim.ATXT, "What're you, some kind of idiot?");
-	   values.put(AnswersDBSim.ASCR, 1);
-	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
+//	   ContentValues values = new ContentValues();
+//	   values.put(UsersDBSim.USER_ID, "user1");
+//	   values.put(UsersDBSim.USER_NAME, "user1");
+//	   values.put(UsersDBSim.PASSWORD, "pass");
+//	   values.put(UsersDBSim.QASK, 5);
+//	   values.put(UsersDBSim.QANS, 6);
+//	   values.put(UsersDBSim.ASCR, 5);
+//	   
+//	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
+//
+//	   values.clear();
+//	   values.put(UsersDBSim.USER_ID, "user2@user.u");
+//	   values.put(UsersDBSim.USER_NAME, "user2");
+//	   values.put(UsersDBSim.PASSWORD, "pass");
+//	   values.put(UsersDBSim.QASK, 14);
+//	   values.put(UsersDBSim.QANS, 3);
+//	   values.put(UsersDBSim.ASCR, 12);
+//
+//	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
+//	   
+//	   values.clear();
+//	   values.put(UsersDBSim.USER_ID, "q");
+//	   values.put(UsersDBSim.USER_NAME, "q");
+//	   values.put(UsersDBSim.PASSWORD, "q");
+//	   values.put(UsersDBSim.QASK, 14);
+//	   values.put(UsersDBSim.QANS, 3);
+//	   values.put(UsersDBSim.ASCR, 12);
+//
+//	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
+//	   
+//	   
+//	   values.clear();
+//	   values.put(QuestionsDBSim.ASK_ID, "user1@user.u");
+//	   values.put(QuestionsDBSim.QTXT, "Who was Julius Caesar?");
+//	   values.put(QuestionsDBSim.CAT, "Other");
+//	   System.out.println(qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values));
+//	   
+//	   values.clear();
+//	   values.put(QuestionsDBSim.ASK_ID, "user1@user.u");
+//	   values.put(QuestionsDBSim.QTXT, "What time is the Maryland Basketball game?");
+//	   values.put(QuestionsDBSim.CAT, "Sports");
+//	   qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values);
+//	   
+//	   
+//	   values.clear();
+//	   values.put(QuestionsDBSim.ASK_ID, "user1@user.u");
+//	   values.put(QuestionsDBSim.QTXT, "How many teams are in the NFL?");
+//	   values.put(QuestionsDBSim.CAT, "Sports");
+//	   qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values);
+//	   
+//	   values.clear();
+//	   values.put(AnswersDBSim.QID, 1);
+//	   values.put(AnswersDBSim.ANS_ID, "idiot@doesntknowit.com");
+//	   values.put(AnswersDBSim.ATXT, "Inventer of the Caesar salad.");
+//	   values.put(AnswersDBSim.ASCR, 1);
+//	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
+//	   
+//	   values.clear();
+//	   values.put(AnswersDBSim.QID, 2);
+//	   values.put(AnswersDBSim.ANS_ID, "sportsguy@users.us");
+//	   values.put(AnswersDBSim.ATXT, "8pm Eastern.");
+//	   values.put(AnswersDBSim.ASCR, 4);
+//	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
+//	   
+//	   values.clear();
+//	   values.put(AnswersDBSim.QID, 3);
+//	   values.put(AnswersDBSim.ANS_ID, "sportsguy@users.us");
+//	   values.put(AnswersDBSim.ATXT, "32. 16 in the AFC and 16 in the NFC.");
+//	   values.put(AnswersDBSim.ASCR, 5);
+//	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
+//
+//	   values.clear();
+//	   values.put(AnswersDBSim.QID, 3);
+//	   values.put(AnswersDBSim.ANS_ID, "ass@ho.le");
+//	   values.put(AnswersDBSim.ATXT, "What're you, some kind of idiot?");
+//	   values.put(AnswersDBSim.ASCR, 1);
+//	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
 	}
 	
 	

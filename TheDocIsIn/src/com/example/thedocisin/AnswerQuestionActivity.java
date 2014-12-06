@@ -15,12 +15,18 @@ public class AnswerQuestionActivity extends Activity {
 	TextView questionText;
 	EditText answer;
 	Button cancel, submit;
-	HTTPServicesTask serviceHelper;
+	private int qid;
+	private HTTPServicesTask serviceHelper;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_answer);
+		
+		Intent intent = getIntent();
+		
+		qid = intent.getIntExtra("qid", -1);
+		
 		
 		questionText = (TextView) findViewById(R.id.answerQuestionText);
 		answer = (EditText) findViewById(R.id.answerAnswerEditText);
@@ -39,6 +45,7 @@ public class AnswerQuestionActivity extends Activity {
 					Toast.makeText(getApplicationContext(), "Answer needs to be longer", Toast.LENGTH_LONG).show();
 				} else {
 					//Add answer to wherever it needs to go
+					serviceHelper.answerQuestion(serviceHelper.getCurrentUser(), qid, answer.getText().toString());
 					
 					finish();
 				}
