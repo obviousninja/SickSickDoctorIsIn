@@ -19,7 +19,7 @@ public class DBManager {
 	private SQLiteDatabase adatabase;
 	private Context mContext;
 	private static DBManager sInstance;
-	private HTTPServicesTask serviceHelper;
+//	private HTTPServicesTask serviceHelper;
 	
 	public static DBManager getInstance(Context context){
 		if(sInstance == null){
@@ -183,23 +183,21 @@ public class DBManager {
 	
 	private ArrayList<Object> getAnswers(String[] split){
 		ArrayList<Object> result = new ArrayList<Object>();
-		int qid;
-		String str = "";
+		String qid = "";
 		
 		
 		for(int i = 0 ; i < split.length; i++){
 			if(split[i].contains("qid=")){
-				str = split[i].split("=")[1];
+				qid = split[i].split("=")[1];
 				break;
 			}
 		}
-		System.out.println("LOOKING FOR QID " + str);
-		qid = Integer.parseInt(str);
+		System.out.println("LOOKING FOR QID " + qid);
 		
 		Cursor aC = adatabase.query(AnswersDBSim.TABLE_NAME,
 				AnswersDBSim.columns,
 				AnswersDBSim.QID + "=?",
-				new String[] {str},
+				new String[] {qid},
 				null, null, null, null);
 		
 		System.out.println("FOUND  " + aC.getCount() + "  ANSWERS");
@@ -393,7 +391,7 @@ public class DBManager {
 	
 	
 	public void populate(){
-		int qid = 1;
+//		int qid = 1;
 //		if(serviceHelper == null){
 //			serviceHelper = HTTPServicesTask.getInstance();
 //		}
@@ -407,7 +405,7 @@ public class DBManager {
 //		
 //		serviceHelper.askQuestion("user1", "Who was Julius Caesar?", "Other");
 //		serviceHelper.answerQuestion("user5@user.com", qid, "Some guy.");
-//		serviceHelper.answerQuestion("user2@user.com", qid, "Inventer of the Caesar Salad");
+//		serviceHelper.answerQuestion("user2@user.com", qid, "Inventor of the Caesar Salad");
 //		serviceHelper.answerQuestion("user4@user.com", qid, "Main character of a Shakespeare play.");
 //		
 //		qid++;

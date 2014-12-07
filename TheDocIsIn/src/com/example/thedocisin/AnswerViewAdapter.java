@@ -5,8 +5,6 @@ import java.util.ArrayList;
 //import com.example.thedocisin.Answer.Answer;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Parcelable;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +18,6 @@ public class AnswerViewAdapter extends BaseAdapter{
 
 	ArrayList<Answer> items;
 	Context mContext;
-	private int aid;
 	private HTTPServicesTask serviceHelper;
 	
 	public AnswerViewAdapter(Context context){
@@ -58,9 +55,7 @@ public class AnswerViewAdapter extends BaseAdapter{
 		} else {
 			itemLayout = (RelativeLayout) View.inflate(mContext,  R.layout.question_view_answer, null);
 		}
-		
-		aid = item.getaid();
-		
+				
 		final TextView scoreView = (TextView) itemLayout.findViewById(R.id.score);
 		final TextView answerView = (TextView) itemLayout.findViewById(R.id.answerView);
 		final ImageButton upvoteButton = (ImageButton) itemLayout.findViewById(R.id.upvoteButton);
@@ -74,9 +69,11 @@ public class AnswerViewAdapter extends BaseAdapter{
 			@Override
 			public void onClick(View v) {
 				// TODO Implement upvotes.
-				serviceHelper.changeScore(aid, "up");
+				serviceHelper.changeScore(item.getaid(), "up");
 				item.setaScr(item.getaScr() + 1);
 				scoreView.setText(Integer.toString(item.getaScr()));
+				upvoteButton.setOnClickListener(null);
+				downvoteButton.setOnClickListener(null);
 			}
 			
 		});
@@ -86,15 +83,22 @@ public class AnswerViewAdapter extends BaseAdapter{
 			@Override
 			public void onClick(View v) {
 				// TODO Implement downvotes.
-				serviceHelper.changeScore(aid, "dn");		
+				serviceHelper.changeScore(item.getaid(), "dn");		
 				item.setaScr(item.getaScr() - 1);
 				scoreView.setText(Integer.toString(item.getaScr()));
+				upvoteButton.setOnClickListener(null);
+				downvoteButton.setOnClickListener(null);
 			}
 			
 		});
 		
 		
 		return itemLayout;
+	}
+
+	public void clear() {
+		items.clear();
+		System.out.println("PRINTING ITEMS.... " + items);
 	}
 
 }

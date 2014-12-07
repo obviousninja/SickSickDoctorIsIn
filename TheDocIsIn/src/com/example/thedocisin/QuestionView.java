@@ -18,6 +18,7 @@ public class QuestionView extends Activity {
 	Context mContext;
 	HTTPServicesTask serviceHelper;
 	AnswerViewAdapter answersAdapter;
+	private int qid;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +33,12 @@ public class QuestionView extends Activity {
 		final ListView answersView = (ListView) findViewById(R.id.question_view_answers);
 		answersAdapter = new AnswerViewAdapter(mContext);
 		
-		int qid = theQuestion.getqid();
+		this.qid = theQuestion.getqid();
 		serviceHelper = HTTPServicesTask.getInstance();
 		serviceHelper.setQuestionView(this);
-		serviceHelper.getAnswers(qid);
+//		serviceHelper.getAnswers(qid);
 		
-//		titleView.setText(theQuestion.getTitle());
+		titleView.setText(theQuestion.getqTxt());
 		descriptionView.setText(theQuestion.getqTxt());
 		descriptionView.setMovementMethod(new ScrollingMovementMethod());
 		
@@ -86,6 +87,16 @@ public class QuestionView extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+	public void onResume(){
+		answersAdapter.clear();
+		if(serviceHelper != null){
+			serviceHelper.getAnswers(this.qid);
+		}
+
+		super.onResume();
 	}
 	
 	public void setAnswers(ArrayList<Object> list){
