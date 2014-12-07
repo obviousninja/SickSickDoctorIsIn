@@ -38,7 +38,7 @@ public class QuestionView extends Activity {
 		serviceHelper.setQuestionView(this);
 //		serviceHelper.getAnswers(qid);
 		
-		titleView.setText("Question by: " + theQuestion.getaskID());
+		titleView.setText(theQuestion.getqTxt());
 		descriptionView.setText(theQuestion.getqTxt());
 		descriptionView.setMovementMethod(new ScrollingMovementMethod());
 		

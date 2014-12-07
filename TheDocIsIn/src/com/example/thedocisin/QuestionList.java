@@ -36,6 +36,7 @@ public class QuestionList extends ListActivity {
 		super.onCreate(savedInstanceState);
 		mContext = getApplicationContext();
 		mAdapter = new QuestionListAdapter(this);
+//		mAdapter.setItems(populateQuestions());
 		mCategory = getIntent().getStringExtra("Category");
 		
 		serviceHelper = HTTPServicesTask.getInstance();
@@ -69,7 +70,35 @@ public class QuestionList extends ListActivity {
 		getMenuInflater().inflate(R.menu.question_view, menu);
 		return true;
 	}
+	
 
+	/**
+	 * Accesses the database and returns the list of questions.
+	 * It currently only produces sample questions.
+	 */
+	public ArrayList<Question> populateQuestions(){
+		ArrayList<Question> questions = new ArrayList<Question>();
+		
+		//TODO: Implement this function such that it accesses the database
+		//and populates a List of Questions.
+		
+		
+		
+		
+		
+		
+//		for(int i = 0; i < 25; i++){
+//			Question sampleQuestion = new Question();
+//			sampleQuestion.setTitle("Sample Question Title No. " + (i+1));
+//			sampleQuestion.setDescription("This is a sample question body.");
+//			sampleQuestion.addAnswer("I am a sample answerer.");
+//			sampleQuestion.addAnswer("This is a bad question.");
+//			questions.add(sampleQuestion);
+//		}
+		
+		
+		return questions;
+	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

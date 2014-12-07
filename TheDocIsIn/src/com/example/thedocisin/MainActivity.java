@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
 				// Go to food question list
 				Intent i = new Intent(getApplicationContext(), QuestionList.class);
 				i.putExtra("Category", "Food");
-				MainActivity.this.startActivity(i);
+				startActivity(i);
 			}
 		});
 		
@@ -44,7 +44,7 @@ public class MainActivity extends Activity {
 				// Go to entertainment question list
 				Intent i = new Intent(getApplicationContext(), QuestionList.class);
 				i.putExtra("Category", "Entertainment");
-				MainActivity.this.startActivity(i);
+				startActivity(i);
 			}
 		});
 		
@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
 				// Go to personal question list 	
 				Intent i = new Intent(getApplicationContext(), QuestionList.class);
 				i.putExtra("Category", "Personal");
-				MainActivity.this.startActivity(i);
+				startActivity(i);
 			}
 		});
 		
@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
 				// Go to sports question list 
 				Intent i = new Intent(getApplicationContext(), QuestionList.class);
 				i.putExtra("Category", "Sports");
-				MainActivity.this.startActivity(i);
+				startActivity(i);
 			}
 		});
 		
@@ -77,7 +77,7 @@ public class MainActivity extends Activity {
 				// Go to religion question list 
 				Intent i = new Intent(getApplicationContext(), QuestionList.class);
 				i.putExtra("Category", "Religion");
-				MainActivity.this.startActivity(i);
+				startActivity(i);
 			}
 		});
 		
@@ -88,7 +88,7 @@ public class MainActivity extends Activity {
 				// Go to other question list
 				Intent i = new Intent(getApplicationContext(), QuestionList.class);
 				i.putExtra("Category", "Other");
-				MainActivity.this.startActivity(i);
+				startActivity(i);
 			}
 		});
 		
@@ -111,7 +111,7 @@ public class MainActivity extends Activity {
 		if (id == R.id.my_profile) {
 			//Go to Profile Page
 			Intent profileIntent = new Intent(MainActivity.this,ProfileActivity.class);
-			MainActivity.this.startActivity(profileIntent);
+			startActivity(profileIntent);
 			return true;
 		}
 		if(id == R.id.ask_a_question){

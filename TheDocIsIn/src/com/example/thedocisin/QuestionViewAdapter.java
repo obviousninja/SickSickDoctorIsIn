@@ -2,9 +2,11 @@ package com.example.thedocisin;
 
 import java.util.ArrayList;
 
-//import com.example.thedocisin.Answer.Answer;
+//import com.example.thedocisin.Question.Answer;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,19 +16,17 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class AnswerViewAdapter extends BaseAdapter{
+public class QuestionViewAdapter extends BaseAdapter{
 
-	ArrayList<Answer> items;
+	ArrayList<Parcelable> items;
 	Context mContext;
-	private HTTPServicesTask serviceHelper;
 	
-	public AnswerViewAdapter(Context context){
+	public QuestionViewAdapter(Context context){
 		mContext = context;
-		items = new ArrayList<Answer>();
-		serviceHelper = HTTPServicesTask.getInstance();
+		items = new ArrayList<Parcelable>();
 	}
 	
-	public void addAll(ArrayList<Answer> arrayList){
+	public void addAll(ArrayList<Parcelable> arrayList){
 		items.addAll(arrayList);
 		notifyDataSetChanged();
 	}
@@ -55,13 +55,13 @@ public class AnswerViewAdapter extends BaseAdapter{
 		} else {
 			itemLayout = (RelativeLayout) View.inflate(mContext,  R.layout.question_view_answer, null);
 		}
-				
+		
 		final TextView scoreView = (TextView) itemLayout.findViewById(R.id.score);
 		final TextView answerView = (TextView) itemLayout.findViewById(R.id.answerView);
 		final ImageButton upvoteButton = (ImageButton) itemLayout.findViewById(R.id.upvoteButton);
 		final ImageButton downvoteButton = (ImageButton) itemLayout.findViewById(R.id.downvoteButton);
-		scoreView.setText(Integer.toString(item.getaScr()));
-		answerView.setText(item.getaTxt());
+//		scoreView.setText(Integer.toString(item.getScore()));
+//		answerView.setText(item.getText());
 		answerView.setMovementMethod(new ScrollingMovementMethod());
 		
 		upvoteButton.setOnClickListener(new OnClickListener(){
@@ -69,11 +69,6 @@ public class AnswerViewAdapter extends BaseAdapter{
 			@Override
 			public void onClick(View v) {
 				// TODO Implement upvotes.
-				serviceHelper.changeScore(item.getaid(), "up");
-				item.setaScr(item.getaScr() + 1);
-				scoreView.setText(Integer.toString(item.getaScr()));
-				upvoteButton.setOnClickListener(null);
-				downvoteButton.setOnClickListener(null);
 			}
 			
 		});
@@ -82,23 +77,13 @@ public class AnswerViewAdapter extends BaseAdapter{
 
 			@Override
 			public void onClick(View v) {
-				// TODO Implement downvotes.
-				serviceHelper.changeScore(item.getaid(), "dn");		
-				item.setaScr(item.getaScr() - 1);
-				scoreView.setText(Integer.toString(item.getaScr()));
-				upvoteButton.setOnClickListener(null);
-				downvoteButton.setOnClickListener(null);
+				// TODO Implement downvotes.				
 			}
 			
 		});
 		
 		
 		return itemLayout;
-	}
-
-	public void clear() {
-		items.clear();
-		System.out.println("PRINTING ITEMS.... " + items);
 	}
 
 }
