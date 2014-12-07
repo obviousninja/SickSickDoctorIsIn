@@ -2,6 +2,8 @@ package com.example.thedocisin;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import android.content.Context;
 import android.os.AsyncTask;
 
@@ -15,6 +17,7 @@ public class HTTPServicesTask {
 	private RegisterUser register;
 	private QuestionList qlist;
 	private QuestionView qview;
+	private ProfileActivity profile;
 	private String userID;
 	
 	public static HTTPServicesTask getInstance(Context context){
@@ -45,7 +48,7 @@ public class HTTPServicesTask {
 	
 	public String getCurrentUser() { return userID; }
 
-	
+	public void setProfileAct(ProfileActivity profile){this.profile = profile;}
 	public void setCurrentUser(String userID){this.userID = userID;};
 	public void setLogger(Logger logger){this.logger = logger;}
 	public void setRegister(RegisterUser register){this.register = register;}
@@ -79,6 +82,10 @@ public class HTTPServicesTask {
 	
 	public void changeScore(int aid, String updown){
 		new DatabaseAccessor().execute(new String[] {"changeScore", aid + "", updown});
+	}
+	
+	public void getUserInfo(String userID){
+		new DatabaseAccessor().execute(new String[] {"getUserInfo", userID});
 	}
 
 
@@ -130,6 +137,10 @@ public class HTTPServicesTask {
 				String reqString = url + "&req=" + params[0] + "&aid=" + params[1] + "&dir=" + params[2];
 				ArrayList<Object> res = dbmanager.request(reqString);
 				result.add(res.get(0));
+			}else if(params[0].equals("getUserInfo")){
+				String reqString = url + "&req=" + params[0] + "&uid=" + params[1];
+				ArrayList<Object> res = dbmanager.request(reqString);
+				result.addAll(res);
 			}
 			
 			
@@ -147,11 +158,41 @@ public class HTTPServicesTask {
 				qlist.setQuestions(result);
 			}else if(result.get(0).equals("getAnswers")){
 				qview.setAnswers(result);
+			}else if(result.get(0).equals("getUserInfo")){
+				profile.setUserInfo(sendToHash(result));
 			}
 		}
-
+		
 	}
-
+	
+	private HashMap<String, String> sendToHash(ArrayList<Object> result){
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		for(int i = 1; i < result.size(); i++){
+			switch(i){
+			case 1:
+				map.put(UsersDBSim.USER_ID, (String) result.get(i));
+				break;
+			case 2:
+				map.put(UsersDBSim.USER_NAME, (String) result.get(i));
+				break;
+			case 4:
+				map.put(UsersDBSim.QASK, (String) result.get(i));
+				break;
+			case 5:
+				map.put(UsersDBSim.QANS, (String) result.get(i));
+				break;
+			case 6:
+				map.put(UsersDBSim.ASCR, (String) result.get(i));
+				break;
+			}
+		}
+		
+		
+		return map;
+		
+		
+	}
 
 	
 }

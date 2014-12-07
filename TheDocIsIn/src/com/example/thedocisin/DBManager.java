@@ -96,6 +96,8 @@ public class DBManager {
 			result = answerQuestion(split);
 		}else if(input.contains("changeScore")){
 			result = changeScore(split);
+		}else if(input.contains("getUserInfo")){
+			result = getUserInfo(split);
 		}
 		
 		System.out.println("printing result");
@@ -104,6 +106,34 @@ public class DBManager {
 		}
 		return result;
 	}
+	
+	private ArrayList<Object> getUserInfo(String[] split){
+		ArrayList<Object> result = new ArrayList<Object>();
+		String usr = "";
+		
+		for(int i = 0 ; i < split.length; i++){
+			if(split[i].contains("uid=")){
+				usr = split[i].split("=")[1];
+			}
+		}
+		
+		Cursor uc = udatabase.query(UsersDBSim.TABLE_NAME,
+				UsersDBSim.columns,
+				UsersDBSim.USER_ID + "=?",
+				new String[] {usr},
+				null, null, null, null);
+		
+		uc.moveToPosition(0);
+		
+		for(int i = 0 ; i < uc.getColumnCount(); i++){
+			result.add(uc.getString(i));
+		}
+		
+		System.out.println("PRINTING RESULT FOR USER INFO " + result);
+		return result;
+		
+	}
+	
 	
 	private ArrayList<Object> changeScore(String[] split){
 		ArrayList<Object> result = new ArrayList<Object>();
@@ -450,7 +480,7 @@ public class DBManager {
 		/////////   USER_ID, USER_NAME, PASSWORD, QASK, QANS, ASCR}
 	   ContentValues values = new ContentValues();
 	   values.put(UsersDBSim.USER_ID, "user1");
-	   values.put(UsersDBSim.USER_NAME, "user1");
+	   values.put(UsersDBSim.USER_NAME, "user1name");
 	   values.put(UsersDBSim.PASSWORD, "pass");
 	   values.put(UsersDBSim.QASK, 5);
 	   values.put(UsersDBSim.QANS, 6);

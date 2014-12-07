@@ -14,6 +14,7 @@ public class UsersDBSim extends SQLiteOpenHelper{
 	final static String QASK = "Q_Ask";
 	final static String QANS = "Q_Ans";
 	final static String ASCR = "A_Scr";
+	final static String COINS = "coins";
 	final static String[] columns = { USER_ID, USER_NAME, PASSWORD, QASK, QANS, ASCR};
 	
 	
