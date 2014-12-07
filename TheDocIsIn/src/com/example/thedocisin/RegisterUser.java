@@ -47,7 +47,7 @@ public class RegisterUser extends Activity {
 				//check if user exist, if not add, otherwise tell it like it is...
 				
 				if(password.equals(confirmpassword)){
-					serviceHelper.registerUser(email, password, nickName);
+					serviceHelper.registerUser(email, password);
 					Toast.makeText(getApplicationContext(), "Attempting to register..", Toast.LENGTH_SHORT).show();
 				}else{
 					Toast.makeText(getApplicationContext(), "Passwords don't match...", Toast.LENGTH_LONG).show();

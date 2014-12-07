@@ -91,7 +91,7 @@ public class Logger extends Activity {
 			public void onClick(View v) {
 				// TODO start register activity
 				Intent registerIntent = new Intent(mContext, RegisterUser.class);
-				startActivityForResult(registerIntent, REGISTRATION_REQUEST);
+				Logger.this.startActivityForResult(registerIntent, REGISTRATION_REQUEST);
 				
 			}
 		});
@@ -141,7 +141,7 @@ public class Logger extends Activity {
 			
 			
 			Intent loggedIntent = new Intent(mContext, MainActivity.class);
-			startActivity(loggedIntent);	
+			Logger.this.startActivity(loggedIntent);	
 		}else{
 			Toast.makeText(mContext, "Invalid user/password combination", Toast.LENGTH_SHORT).show();
 		}
