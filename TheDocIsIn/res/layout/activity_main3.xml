@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="#FFFFFF">
+
+    <Button
+        android:id="@+id/food_button2"
+        android:background="#FF0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/personal_button3"
+        android:layout_alignLeft="@+id/sports_button1"
+        android:text="@string/food_desc" />
+
+    <Button
+        android:id="@+id/religion_button5"
+        android:background="#FF0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/food_button2"
+        android:layout_below="@+id/personal_button3"
+        android:text="@string/religion_desc" />
+
+    <Button
+        android:id="@+id/other_button6"
+        android:background="#FF0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/religion_button5"
+        android:layout_below="@+id/religion_button5"
+        android:text="@string/other_desc" />
+
+    <Button
+        android:id="@+id/entertainment_button4"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/religion_button5"
+        android:layout_alignLeft="@+id/religion_button5"
+        android:layout_marginLeft="32dp"
+        android:background="#FF0000"
+        android:text="@string/entertainment_desc" />
+
+    <Button
+        android:id="@+id/personal_button3"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/religion_button5"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="31dp"
+        android:background="#FF0000"
+        android:text="@string/personal_desc" />
+
+    <Button
+        android:id="@+id/sports_button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/food_button2"
+        android:layout_centerHorizontal="true"
+        android:background="#FF0000"
+        android:text="@string/sports_desc" />
+   
+</RelativeLayout>

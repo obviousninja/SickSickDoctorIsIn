@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -24,14 +25,14 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_main3);
 		
-		ImageView food_view = (ImageView) findViewById(R.id.food_view);
-		ImageView entertainment_view = (ImageView) findViewById(R.id.entertainment_view);
-		ImageView personal_view = (ImageView) findViewById(R.id.personal_view);
-		ImageView sports_view = (ImageView) findViewById(R.id.sports_view);
-		ImageView religion_view = (ImageView) findViewById(R.id.religion_view);
-		ImageView other_view = (ImageView) findViewById(R.id.other_view);
+		Button food_view = (Button) findViewById(R.id.food_button2);
+		Button entertainment_view = (Button) findViewById(R.id.entertainment_button4);
+		Button personal_view = (Button) findViewById(R.id.personal_button3);
+		Button sports_view = (Button) findViewById(R.id.sports_button1);
+		Button religion_view = (Button) findViewById(R.id.religion_button5);
+		Button other_view = (Button) findViewById(R.id.other_button6);
 
 		
 		serviceHelper = HTTPServicesTask.getInstance();
