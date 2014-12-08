@@ -216,6 +216,7 @@ public class DBManager {
 		values.put(AnswersDBSim.ANS_ID, ansid);
 		values.put(AnswersDBSim.ATXT, atxt);
 		values.put(AnswersDBSim.ASCR, 0);
+		adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
 		
 		result.add(true);
 		return result;	
@@ -234,6 +235,7 @@ public class DBManager {
 				break;
 			}
 		}
+		System.out.println("LOOKING FOR QID " + qid);
 		
 		Cursor aC = adatabase.query(AnswersDBSim.TABLE_NAME,
 				AnswersDBSim.columns,
@@ -241,6 +243,7 @@ public class DBManager {
 				new String[] {qid},
 				null, null, null, null);
 		
+		System.out.println("FOUND  " + aC.getCount() + "  ANSWERS");
 		
 		while(aC.moveToNext()){
 			Answer a = new Answer(aC.getInt(0), aC.getInt(1), aC.getString(2), aC.getString(3), aC.getInt(4));
@@ -270,9 +273,15 @@ public class DBManager {
 				null, null, null, null);
 		
 		
+//		int qid, String askid, String qtxt, String ansid, String atxt, int aScr, String category
 		while(qC.moveToNext()){
 			Question q = new Question(qC.getInt(0), qC.getString(1), qC.getString(2), qC.getString(3));
-
+			System.out.println("DETECTING QID " + qC.getString(0));
+			System.out.println("DETECTING ASKID " + qC.getString(1));
+			System.out.println("DETECTING QTXT " + qC.getString(2));
+			System.out.println("DETECTING CAT " + qC.getString(3));
+			
+			System.out.println("question: " + q);
 			q.setname(getName(qC.getString(1)));
 			result.add(q);
 		}
@@ -311,6 +320,7 @@ public class DBManager {
 			result.add(false);
 			return result;
 		}
+		System.out.println("old value: " + oldValAsk + "\nold coins:" + oldValCoins);
 		
 		ContentValues values = new ContentValues();
 		values.put(UsersDBSim.QASK, oldValAsk + 1);
@@ -329,12 +339,16 @@ public class DBManager {
 				null, null, null, null);
 
 		uC.moveToPosition(0);
+
+		int newVal = uC.getInt(1);
+		System.out.println("new value: " + newVal);
 		
 		values.clear();
 		values.clear();
 		values.put(QuestionsDBSim.ASK_ID, userid);
 		values.put(QuestionsDBSim.QTXT, qtxt);
 		values.put(QuestionsDBSim.CAT, cat);
+		qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values);
 		
 		result.add(true);
 		return result;
@@ -425,6 +439,7 @@ public class DBManager {
 	
 	
 	private String getName(String userid){
+		System.out.println("TRYING TO GET NAME CORRESPONDING TO " + userid);
 		Cursor uC = udatabase.query(UsersDBSim.TABLE_NAME,
 				new String[] {UsersDBSim.USER_ID, UsersDBSim.USER_NAME}, 
 				UsersDBSim.USER_ID + "=?", 
@@ -432,17 +447,20 @@ public class DBManager {
 				null, null, null, null);
 		
 		uC.moveToNext();
+		System.out.println("COLUMN COUNT : " + uC.getColumnCount());
 		
 		if(uC.getCount() > 0){
 			System.out.println("RETURNING " + uC.getString(1));
 			return uC.getString(1);
 		}
-		return "";		
+		System.out.println("RETURNING can't find");
+		return "can't find";		
 	}
 	
 	
 	
-	public void populate(){		
+	public void populate(){
+		
 		
 		ArrayList<String> list = new ArrayList<String>();
 		ArrayList<String> questions = new ArrayList<String>();

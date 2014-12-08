@@ -98,7 +98,6 @@ public class AnswerViewAdapter extends BaseAdapter{
 
 	public void clear() {
 		items.clear();
-		System.out.println("PRINTING ITEMS.... " + items);
 	}
 
 }
