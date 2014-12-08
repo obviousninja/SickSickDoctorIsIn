@@ -510,6 +510,61 @@ public class DBManager {
 		insertQuestion(list, questions, "When is the next star wars actually coming out?", "Other");		//28
 		insertQuestion(list, questions, "Is family guy even good?", "Other");								//29
 
+		// The following questions are written by Philip Austin
+		insertQuestion(list, questions, "Why is your favorite movie Black Swan?", "Entertainment");			//30
+		insertQuestion(list, questions, "What is some must hear underground music?", "Entertainment");		//31
+		insertQuestion(list, questions, "How old is Jennifer Anniston?", "Entertainment");					//32
+		insertQuestion(list, questions, "What's up with Ashton kutcher?", "Entertainment");					//33
+		insertQuestion(list, questions, "Game of Thrones - why should I watch?", "Entertainment");			//34
+		insertQuestion(list, questions, "Is Orange Is The New Black as good as I hear?", "Entertainment");	//35
+		insertQuestion(list, questions, "Is Stephen Colbert actually Conservative?", "Entertainment");		//36
+		insertQuestion(list, questions, "What season of Bachelor/Bachelorette is it?", "Entertainment");	//37
+		insertQuestion(list, questions, "What has Miley done now?", "Entertainment");						//38
+		insertQuestion(list, questions, "What are some recent celebrity marriages?", "Entertainment");		//39
+		insertQuestion(list, questions, "Who is the energetic guy on Parks and Rec?", "Entertainment");		//40
+		insertQuestion(list, questions, "What network shows South Park?", "Entertainment");					//41
+		
+		insertQuestion(list, questions, "What meals can I make with onions and rice?", "Food");				//42
+		insertQuestion(list, questions, "I can't find the food on instagram anywhere?", "Food");			//43
+		insertQuestion(list, questions, "What is Gordon Ramsey's favorite meal to prepare?", "Food");		//44
+		insertQuestion(list, questions, "What is Gluten and why are people afraid of it?", "Food");			//45
+		insertQuestion(list, questions, "Am I alergic to shellfish?", "Food");								//46
+		insertQuestion(list, questions, "Can I eat a blowfish even if it's puffed up?", "Food");			//47
+		insertQuestion(list, questions, "Is there proof that McDonalds is bad for you?", "Food");			//48
+		insertQuestion(list, questions, "So Arby's...What's up with that?", "Food");						//49
+		insertQuestion(list, questions, "Is there an airline that provides good food?", "Food");			//50
+		insertQuestion(list, questions, "Easy to make dorm foods?", "Food");								//51
+		insertQuestion(list, questions, "Does an apple a day keep the doctor away" +						//52
+				" if you like your doctor?", "Food"); 														
+		insertQuestion(list, questions, "Are apples or bananas better for you?", "Food");					//53
+		insertQuestion(list, questions, "How do you make dough", "Food");									//54
+		insertQuestion(list, questions, "What is a good local restaraunt by you?", "Food");					//55
+		insertQuestion(list, questions, "Is there a filling but healthy snack out there?", "Food");			//56
+		
+		insertQuestion(list, questions, "How can I connect with my teenage son?", "Personal");				//57
+		insertQuestion(list, questions, "How can I prevent my mother inlaw from moving in?", "Personal");	//58
+		insertQuestion(list, questions, "Advise on dealing with a troublesome son inlaw?", "Personal");		//59
+		insertQuestion(list, questions, "How can I tell if my 12 y.o. girl is ready for dating",			//60
+				"Personal");
+		insertQuestion(list, questions, "How to get my teenage son off the couch?", "Personal");			//61
+		insertQuestion(list, questions, "Any ideas on wedding themes?", "Personal");						//62
+		insertQuestion(list, questions, "How can i get my college roommate to do the dishes?", "Personal");	//63
+		insertQuestion(list, questions, "Does Microsoft offer free repairs?", "Personal");					//64
+		
+		insertQuestion(list, questions, "What if God was one of us?", "Religion");							//65
+		insertQuestion(list, questions, "What were the disciples' names?", "Religion");						//66
+		insertQuestion(list, questions, "How did Christianity become the most common religion in the world",//67
+				"Religion");
+		insertQuestion(list, questions, "What does a \"Shin\" mean on a dreidel?", "Religion");				//68
+		insertQuestion(list, questions, "How does repenting resolve one of their sins?", "Religion");		//69
+		insertQuestion(list, questions, "The Pope is for what religion?", "Religion");						//70
+		insertQuestion(list, questions, "Why is there 8 days of Channukkah?", "Religion");					//71
+		insertQuestion(list, questions, "What does a bunny have to do with Easter?", "Religion");			//72
+		insertQuestion(list, questions, "What are some lesser known holidays for your religion",			//73
+				"Religion");
+		insertQuestion(list, questions, "Why is church on Sundays?", "Religion");							//74
+		insertQuestion(list, questions, "Why can'y some people accept other people like" +					//75
+				"other religions?", "Religion");		
 		
 		insertAnswer(list, questions, 4, "32-16 Titans.");
 		insertAnswer(list, questions, -1, "I just need coins!!");

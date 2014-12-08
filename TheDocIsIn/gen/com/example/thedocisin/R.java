@@ -104,15 +104,14 @@ public final class R {
         public static final int activity_logger=0x7f030002;
         public static final int activity_logger2=0x7f030003;
         public static final int activity_main=0x7f030004;
-        public static final int activity_main2=0x7f030005;
-        public static final int activity_main3=0x7f030006;
-        public static final int activity_question_view=0x7f030007;
-        public static final int profile_layout=0x7f030008;
-        public static final int question_list_header=0x7f030009;
-        public static final int question_list_item=0x7f03000a;
-        public static final int question_view_answer=0x7f03000b;
-        public static final int question_view_header=0x7f03000c;
-        public static final int registrationone=0x7f03000d;
+        public static final int activity_main3=0x7f030005;
+        public static final int activity_question_view=0x7f030006;
+        public static final int profile_layout=0x7f030007;
+        public static final int question_list_header=0x7f030008;
+        public static final int question_list_item=0x7f030009;
+        public static final int question_view_answer=0x7f03000a;
+        public static final int question_view_header=0x7f03000b;
+        public static final int registrationone=0x7f03000c;
     }
     public static final class menu {
         public static final int general_menu=0x7f070000;
