@@ -40,7 +40,7 @@ public class QuestionList extends ListActivity {
 		
 		serviceHelper = HTTPServicesTask.getInstance();
 		serviceHelper.setQuestionList(this);
-		serviceHelper.getQuestions(mCategory);
+//		serviceHelper.getQuestions(mCategory);
 		
 		
 		
@@ -83,6 +83,16 @@ public class QuestionList extends ListActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	@Override
+	public void onResume(){
+		mAdapter.clear();
+		if(serviceHelper != null){
+			serviceHelper.getQuestions(mCategory);
+		}
+
+		super.onResume();
+	}
+	
 	public void setQuestions(ArrayList<Object> result) {
 		ArrayList<Question> questions = new ArrayList<Question>();
 		

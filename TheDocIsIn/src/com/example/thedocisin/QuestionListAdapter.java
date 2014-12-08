@@ -86,4 +86,8 @@ public class QuestionListAdapter extends BaseAdapter {
 		return itemLayout;
 	}
 
+	public void clear() {
+		items.clear();
+	}
+
 }
