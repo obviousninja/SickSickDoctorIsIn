@@ -3,6 +3,8 @@ package com.example.thedocisin;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -88,5 +90,25 @@ public class AskQuestionActivity extends Activity {
 				}
 			}
 		});
+	}
+	
+	public void logOut(){
+		setResult(MainActivity.LOGOUT_RESULT);
+		finish();
+	}
+	
+
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.logout_menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		if (id == R.id.log_out) {
+			logOut();
+		}
+		return super.onOptionsItemSelected(item);
 	}
 }

@@ -53,7 +53,7 @@ public class QuestionView extends Activity {
 				Intent answerViewIntent = new Intent(getApplicationContext(),AnswerQuestionActivity.class);
 //				answerViewIntent.fillIn(theQuestion.toIntent(), 0);
 				answerViewIntent.putExtra("qid", theQuestion.getqid());
-				QuestionView.this.startActivity(answerViewIntent);
+				QuestionView.this.startActivityForResult(answerViewIntent,MainActivity.REQUEST_CODE);
 				
 			}
 			
@@ -68,12 +68,23 @@ public class QuestionView extends Activity {
 		answersView.setAdapter(answersAdapter);
 	}
 	
+	public void logOut(){
+		setResult(MainActivity.LOGOUT_RESULT);
+		finish();
+	}
+	
+	public void onActivityResult(int requestCode, int resultCode, Intent data){
+		if(resultCode == MainActivity.LOGOUT_RESULT){
+			logOut();			
+		}
+	}
+	
 
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.question_view, menu);
+		getMenuInflater().inflate(R.menu.logout_menu, menu);
 		return true;
 	}
 
@@ -83,8 +94,8 @@ public class QuestionView extends Activity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		if (id == R.id.log_out) {
+			logOut();
 		}
 		return super.onOptionsItemSelected(item);
 	}

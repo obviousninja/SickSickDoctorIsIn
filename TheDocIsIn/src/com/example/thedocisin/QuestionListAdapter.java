@@ -48,6 +48,8 @@ public class QuestionListAdapter extends BaseAdapter {
 		// TODO Auto-generated method stub
 		return position;
 	}
+	
+
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -66,7 +68,7 @@ public class QuestionListAdapter extends BaseAdapter {
 			title += "...";
 		}
 		titleView.setText(title);
-//		titleView.setText("Here's a title");
+		//		titleView.setText("Here's a title");
 
 		
 		
@@ -77,7 +79,7 @@ public class QuestionListAdapter extends BaseAdapter {
 				Intent questionViewIntent = new Intent(mContext, QuestionView.class);
 				questionViewIntent.fillIn(item.packageToIntent(),0);
 				
-				mContext.startActivity(questionViewIntent);
+				((QuestionList) mContext).startActivityForResult(questionViewIntent, MainActivity.REQUEST_CODE);
 			}
 			
 		});
@@ -85,5 +87,5 @@ public class QuestionListAdapter extends BaseAdapter {
 		
 		return itemLayout;
 	}
-
+	
 }
