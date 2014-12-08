@@ -14,8 +14,9 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 	
 	final String TAG = "TheDocIsIn";
-	final static int REQUEST_CODE = 0;
-	final static int LOGOUT_RESULT = 1;
+	final static int REQUEST_CODE = 10;
+	final static int LOGOUT_RESULT = 11;
+	final static int QASK_RESULT = 12;
 	private HTTPServicesTask serviceHelper;
 
 
@@ -109,6 +110,11 @@ public class MainActivity extends Activity {
 		if(requestCode == MainActivity.REQUEST_CODE){
 			if(resultCode == MainActivity.LOGOUT_RESULT){
 				logout();
+			} else if(resultCode == MainActivity.QASK_RESULT){
+				String cat = data.getStringExtra("Category");
+				Intent i = new Intent(getApplicationContext(), QuestionList.class);
+				i.putExtra("Category", cat);
+				MainActivity.this.startActivityForResult(i, MainActivity.REQUEST_CODE);
 			}
 		}
 	}

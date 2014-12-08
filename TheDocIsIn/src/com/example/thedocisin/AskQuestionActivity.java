@@ -31,7 +31,7 @@ public class AskQuestionActivity extends Activity {
 		
 		
 		Intent parentIntent = getIntent();
-		String mCategory = parentIntent.getStringExtra("Category");
+		final String mCategory = parentIntent.getStringExtra("Category");
 
 		enterQuestion = (EditText) findViewById(R.id.askEnterQuestion);
 		categorySpinner = (Spinner) findViewById(R.id.askCategorySpinner);
@@ -86,9 +86,10 @@ public class AskQuestionActivity extends Activity {
 					
 					serviceHelper.askQuestion(serviceHelper.getCurrentUser(), questionText, category);
 					
-					Intent intent = new Intent(AskQuestionActivity.this, QuestionList.class);
-					intent.putExtra("Category", category);
-					startActivity(intent);
+					Intent resultIntent = new Intent();
+					resultIntent.putExtra("Category", category);
+					setResult(MainActivity.QASK_RESULT, resultIntent);
+					finish();
 				}
 			}
 		});

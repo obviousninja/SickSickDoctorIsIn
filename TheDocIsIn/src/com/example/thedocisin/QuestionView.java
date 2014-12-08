@@ -37,13 +37,15 @@ public class QuestionView extends Activity {
 		serviceHelper = HTTPServicesTask.getInstance();
 		serviceHelper.setQuestionView(this);
 //		serviceHelper.getAnswers(qid);
-		
+		/*
 		String title = theQuestion.getqTxt();
 		if(title.length() > 31){
 			title = title.substring(0, 28);
 			title += "...";
 		}
-		title += "\n" + theQuestion.getname() ;
+		*/
+		//title += "\n" + theQuestion.getname() ;
+		String title = "Question by: "+ theQuestion.getname();
 		titleView.setText(title);
 		descriptionView.setText(theQuestion.getqTxt());
 		descriptionView.setMovementMethod(new ScrollingMovementMethod());
