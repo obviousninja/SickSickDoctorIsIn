@@ -17,6 +17,7 @@ public class Answer  {
 	private String ansID;
 	private String aTxt;
 	private int aScr;
+	private String name;
 	
 	public Answer(int aid, int qid, String ansid, String atxt, int aScr){
 		this.setaid(aid);
@@ -24,6 +25,7 @@ public class Answer  {
 		this.setansID(ansid);
 		this.setaTxt(atxt);
 		this.setaScr(aScr);
+		this.name = "";
 	}
 	
 	public Answer(Intent intent){
@@ -33,6 +35,7 @@ public class Answer  {
 		this.ansID = bundle.getString(ANS_ID_KEY, ansID);
 		this.aTxt = bundle.getString(A_TEXT_KEY, aTxt);
 		this.aScr = bundle.getInt(A_SCORE_KEY, aScr);
+		this.name = "";
 	}
 	
 	
@@ -45,6 +48,13 @@ public class Answer  {
 		return intent;
 	}
 	
+	public String getname(){
+		return name;
+	}
+	
+	public void setname(String name){
+		this.name = name;
+	}
 	public int getaid(){
 		return aid;
 	}

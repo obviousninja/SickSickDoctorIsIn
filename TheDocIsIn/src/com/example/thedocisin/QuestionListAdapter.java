@@ -61,8 +61,8 @@ public class QuestionListAdapter extends BaseAdapter {
 		
 		final TextView titleView = (TextView) itemLayout.findViewById(R.id.question_list_item_title);
 		String title = item.getqTxt();
-		if(title.length() > 24){
-			title = title.substring(0, 24);
+		if(title.length() > 28){
+			title = title.substring(0, 28);
 			title += "...";
 		}
 		titleView.setText(title);

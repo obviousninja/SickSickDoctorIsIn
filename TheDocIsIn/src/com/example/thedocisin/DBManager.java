@@ -234,6 +234,7 @@ public class DBManager {
 		
 		while(aC.moveToNext()){
 			Answer a = new Answer(aC.getInt(0), aC.getInt(1), aC.getString(2), aC.getString(3), aC.getInt(4));
+			a.setname(getName(aC.getString(2)));
 			result.add(a);
 		}
 		
@@ -268,6 +269,7 @@ public class DBManager {
 			System.out.println("DETECTING CAT " + qC.getString(3));
 			
 			System.out.println("question: " + q);
+			q.setname(getName(qC.getString(1)));
 			result.add(q);
 		}
 		
@@ -334,6 +336,8 @@ public class DBManager {
 		result.add(true);
 		return result;
 	}
+	
+
 
 	private ArrayList<Object> verifyUserPass(String[] split) {
 		ArrayList<Object> result = new ArrayList<Object>();
@@ -417,6 +421,24 @@ public class DBManager {
 	}
 	
 	
+	private String getName(String userid){
+		System.out.println("TRYING TO GET NAME CORRESPONDING TO " + userid);
+		Cursor uC = udatabase.query(UsersDBSim.TABLE_NAME,
+				new String[] {UsersDBSim.USER_ID, UsersDBSim.USER_NAME}, 
+				UsersDBSim.USER_ID + "=?", 
+				new String[] {userid}, 
+				null, null, null, null);
+		
+		uC.moveToNext();
+		System.out.println("COLUMN COUNT : " + uC.getColumnCount());
+		
+		if(uC.getCount() > 0){
+			System.out.println("RETURNING " + uC.getString(1));
+			return uC.getString(1);
+		}
+		System.out.println("RETURNING can't find");
+		return "can't find";		
+	}
 	
 	
 	
@@ -508,22 +530,52 @@ public class DBManager {
 
 	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
 	   
+	   values.clear();
+	   values.put(UsersDBSim.USER_ID, "sportsguy@users.us");
+	   values.put(UsersDBSim.USER_NAME, "SportsGuy");
+	   values.put(UsersDBSim.PASSWORD, "q");
+	   values.put(UsersDBSim.QASK, 14);
+	   values.put(UsersDBSim.QANS, 3);
+	   values.put(UsersDBSim.ASCR, 12);
+
+	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
 	   
 	   values.clear();
-	   values.put(QuestionsDBSim.ASK_ID, "user1@user.u");
+	   values.put(UsersDBSim.USER_ID, "idiot@doesntknowit.com");
+	   values.put(UsersDBSim.USER_NAME, "IdiotGuy");
+	   values.put(UsersDBSim.PASSWORD, "q");
+	   values.put(UsersDBSim.QASK, 14);
+	   values.put(UsersDBSim.QANS, 3);
+	   values.put(UsersDBSim.ASCR, 12);
+
+	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
+	   
+	   values.clear();
+	   values.put(UsersDBSim.USER_ID, "ass@ho.le");
+	   values.put(UsersDBSim.USER_NAME, "ass");
+	   values.put(UsersDBSim.PASSWORD, "q");
+	   values.put(UsersDBSim.QASK, 14);
+	   values.put(UsersDBSim.QANS, 3);
+	   values.put(UsersDBSim.ASCR, 12);
+
+	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
+	   
+	   
+	   values.clear();
+	   values.put(QuestionsDBSim.ASK_ID, "user2@user.u");
 	   values.put(QuestionsDBSim.QTXT, "Who was Julius Caesar?");
 	   values.put(QuestionsDBSim.CAT, "Other");
 	   System.out.println(qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values));
 	   
 	   values.clear();
-	   values.put(QuestionsDBSim.ASK_ID, "user1@user.u");
+	   values.put(QuestionsDBSim.ASK_ID, "user2@user.u");
 	   values.put(QuestionsDBSim.QTXT, "What time is the Maryland Basketball game?");
 	   values.put(QuestionsDBSim.CAT, "Sports");
 	   qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values);
 	   
 	   
 	   values.clear();
-	   values.put(QuestionsDBSim.ASK_ID, "user1@user.u");
+	   values.put(QuestionsDBSim.ASK_ID, "user2@user.u");
 	   values.put(QuestionsDBSim.QTXT, "How many teams are in the NFL?");
 	   values.put(QuestionsDBSim.CAT, "Sports");
 	   qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values);

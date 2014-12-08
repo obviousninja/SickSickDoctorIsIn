@@ -48,6 +48,7 @@ public class HTTPServicesTask {
 	
 	public String getCurrentUser() { return userID; }
 
+
 	public void setProfileAct(ProfileActivity profile){this.profile = profile;}
 	public void setCurrentUser(String userID){this.userID = userID;};
 	public void setLogger(Logger logger){this.logger = logger;}

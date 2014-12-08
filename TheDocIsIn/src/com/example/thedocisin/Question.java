@@ -9,6 +9,7 @@ public class Question {
 	
 	private final String QID_KEY = "QID";
 	private final String ASK_ID_KEY = "ASK_ID";
+	private final String NAME_KEY = "NAME";
 	private final String Q_TEXT_KEY = "Q_TEXT";
 	private final String CAT_KEY = "CAT";
 	
@@ -16,12 +17,14 @@ public class Question {
 	private String askID;
 	private String qTxt;
 	private String category;
+	private String name;
 	
 	public Question(int qid, String askid, String qtxt, String category){
 		this.setqid(qid);
 		this.setaskID(askid);
 		this.setqTxt(qtxt);
 		this.setcategory(category);
+		this.name = "";
 	}
 	
 	public Question(Intent intent){
@@ -30,6 +33,7 @@ public class Question {
 		this.askID = bundle.getString(ASK_ID_KEY, askID);
 		this.qTxt = bundle.getString(Q_TEXT_KEY, qTxt);
 		this.category = bundle.getString(CAT_KEY, category);
+		this.name = bundle.getString(NAME_KEY, name);
 	}
 	
 	
@@ -39,9 +43,18 @@ public class Question {
 		intent.putExtra(ASK_ID_KEY, askID);
 		intent.putExtra(Q_TEXT_KEY, qTxt);
 		intent.putExtra(CAT_KEY, category);
+		intent.putExtra(NAME_KEY, name);
 		return intent;
 	}
 
+	public String getname(){
+		return name;
+	}
+	
+	public void setname(String name){
+		this.name = name;
+	}
+	
 	public int getqid() {
 		return qid;
 	}
