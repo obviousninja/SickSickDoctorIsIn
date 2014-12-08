@@ -109,15 +109,12 @@ public class QuestionList extends ListActivity {
 		mAdapter.setItems(this.questions);
 	
 	}
-<<<<<<< HEAD
-}
-=======
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent data){
 		if(resultCode == MainActivity.LOGOUT_RESULT){
 			logOut();			
 		}
 	}
-
 }
->>>>>>> origin/master
+	
+

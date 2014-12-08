@@ -87,13 +87,9 @@ public class QuestionListAdapter extends BaseAdapter {
 		
 		return itemLayout;
 	}
-<<<<<<< HEAD
 
 	public void clear() {
 		items.clear();
 	}
 
-=======
-	
->>>>>>> origin/master
 }
