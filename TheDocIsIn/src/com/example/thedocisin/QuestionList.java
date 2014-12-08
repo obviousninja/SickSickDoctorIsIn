@@ -70,10 +70,7 @@ public class QuestionList extends ListActivity {
 		return true;
 	}
 	
-	public void logOut(){
-		setResult(MainActivity.LOGOUT_RESULT);
-		finish();
-	}
+
 
 
 	@Override
@@ -83,7 +80,7 @@ public class QuestionList extends ListActivity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.log_out) {
-			logOut();
+			logout();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -110,9 +107,16 @@ public class QuestionList extends ListActivity {
 	
 	}
 	
-	public void onActivityResult(int requestCode, int resultCode, Intent data){
-		if(resultCode == MainActivity.LOGOUT_RESULT){
-			logOut();			
+	public void logout(){
+		setResult(MainActivity.LOGOUT_RESULT);
+		finish();
+	}
+	
+	protected void onActivityResult(int requestCode, int resultCode, Intent data){
+		if(requestCode == MainActivity.REQUEST_CODE){
+			if(resultCode == MainActivity.LOGOUT_RESULT){
+				logout();
+			}
 		}
 	}
 }

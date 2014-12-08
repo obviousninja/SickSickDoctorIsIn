@@ -110,6 +110,12 @@ public class Logger extends Activity {
 				Toast.makeText(mContext, "Registration Cancelled...", Toast.LENGTH_SHORT).show();	
 			}
 		}
+		
+		if(requestCode == MainActivity.REQUEST_CODE){
+			if(resultCode == MainActivity.LOGOUT_RESULT){
+				serviceHelper.logout();
+			}
+		}
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -147,6 +153,7 @@ public class Logger extends Activity {
 		}
 	}
 	
+
 	
 	
 }

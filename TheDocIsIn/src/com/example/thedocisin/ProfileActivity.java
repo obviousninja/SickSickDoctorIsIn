@@ -40,7 +40,11 @@ public class ProfileActivity extends Activity{
 		this.answered_edit.setText(map.get(UsersDBSim.QANS));
 	}
 	
+<<<<<<< HEAD
 	public void logOut(){
+=======
+	public void logout(){
+>>>>>>> origin/master
 		setResult(MainActivity.LOGOUT_RESULT);
 		finish();
 	}
@@ -55,7 +59,7 @@ public class ProfileActivity extends Activity{
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
 		if (id == R.id.log_out) {
-			logOut();
+			logout();
 		}
 		return super.onOptionsItemSelected(item);
 	}
