@@ -194,6 +194,15 @@ public class HTTPServicesTask {
 		
 		
 	}
+	
+	public void logout(){
+		setLogger(null);
+		setRegister(null);
+		setQuestionList(null);
+		setQuestionView(null);
+		setProfileAct(null);
+		setCurrentUser(null);
+	}
 
 	
 }

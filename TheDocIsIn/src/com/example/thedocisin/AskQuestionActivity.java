@@ -92,7 +92,7 @@ public class AskQuestionActivity extends Activity {
 		});
 	}
 	
-	public void logOut(){
+	public void logout(){
 		setResult(MainActivity.LOGOUT_RESULT);
 		finish();
 	}
@@ -107,7 +107,7 @@ public class AskQuestionActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
 		if (id == R.id.log_out) {
-			logOut();
+			logout();
 		}
 		return super.onOptionsItemSelected(item);
 	}

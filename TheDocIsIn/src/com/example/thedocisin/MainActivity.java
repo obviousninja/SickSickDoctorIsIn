@@ -13,8 +13,8 @@ import android.widget.ImageView;
 public class MainActivity extends Activity {
 	
 	final String TAG = "TheDocIsIn";
-	final static int REQUEST_CODE = 0;
-	final static int LOGOUT_RESULT = 1;
+	final static int REQUEST_CODE = 10;
+	final static int LOGOUT_RESULT = 11;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
 		ImageView sports_view = (ImageView) findViewById(R.id.sports_view);
 		ImageView religion_view = (ImageView) findViewById(R.id.religion_view);
 		ImageView other_view = (ImageView) findViewById(R.id.other_view);
-		
+				
 		food_view.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -97,12 +97,16 @@ public class MainActivity extends Activity {
 		
 	}
 	
-	public void onActivityResult(int requestCode, int resultCode, Intent data){
-		if(resultCode == LOGOUT_RESULT)
-			logOut();
+	protected void onActivityResult(int requestCode, int resultCode, Intent data){
+		if(requestCode == MainActivity.REQUEST_CODE){
+			if(resultCode == MainActivity.LOGOUT_RESULT){
+				logout();
+			}
+		}
 	}
 	
-	public void logOut(){
+	public void logout(){
+		setResult(MainActivity.LOGOUT_RESULT);
 		finish();
 	}
 
@@ -135,7 +139,7 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		if(id == R.id.log_out){
-			logOut();
+			logout();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

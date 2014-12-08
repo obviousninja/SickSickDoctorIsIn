@@ -74,18 +74,18 @@ public class QuestionView extends Activity {
 		answersView.setAdapter(answersAdapter);
 	}
 	
-	public void logOut(){
+	public void logout(){
 		setResult(MainActivity.LOGOUT_RESULT);
 		finish();
 	}
 	
-	public void onActivityResult(int requestCode, int resultCode, Intent data){
-		if(resultCode == MainActivity.LOGOUT_RESULT){
-			logOut();			
+	protected void onActivityResult(int requestCode, int resultCode, Intent data){
+		if(requestCode == MainActivity.REQUEST_CODE){
+			if(resultCode == MainActivity.LOGOUT_RESULT){
+				logout();
+			}
 		}
 	}
-	
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -101,7 +101,7 @@ public class QuestionView extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.log_out) {
-			logOut();
+			logout();
 		}
 		return super.onOptionsItemSelected(item);
 	}
