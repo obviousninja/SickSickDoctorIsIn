@@ -86,7 +86,9 @@ public class AskQuestionActivity extends Activity {
 					
 					serviceHelper.askQuestion(serviceHelper.getCurrentUser(), questionText, category);
 					
-					finish();
+					Intent intent = new Intent(AskQuestionActivity.this, QuestionList.class);
+					intent.putExtra("Category", category);
+					startActivity(intent);
 				}
 			}
 		});
