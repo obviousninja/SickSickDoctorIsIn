@@ -66,7 +66,7 @@ public class QuestionList extends ListActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.logout_menu, menu);
+		getMenuInflater().inflate(R.menu.general_menu, menu);
 		return true;
 	}
 	
@@ -81,6 +81,12 @@ public class QuestionList extends ListActivity {
 		int id = item.getItemId();
 		if (id == R.id.log_out) {
 			logout();
+			return true;
+		}
+		
+		if(id == R.id.my_profile){
+			Intent profileIntent = new Intent(QuestionList.this,ProfileActivity.class);
+			QuestionList.this.startActivity(profileIntent);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -17,7 +16,7 @@ public class AskQuestionActivity extends Activity {
 
 	EditText enterQuestion;
 	Spinner categorySpinner;
-	CheckBox askByLocation;
+//	CheckBox askByLocation;
 	Button cancelButton, submitButton;
 	private HTTPServicesTask serviceHelper;
 
@@ -35,7 +34,7 @@ public class AskQuestionActivity extends Activity {
 
 		enterQuestion = (EditText) findViewById(R.id.askEnterQuestion);
 		categorySpinner = (Spinner) findViewById(R.id.askCategorySpinner);
-		askByLocation = (CheckBox) findViewById(R.id.askByLocation);
+		//askByLocation = (CheckBox) findViewById(R.id.askByLocation);
 		cancelButton = (Button) findViewById(R.id.askCancelButton);
 		submitButton = (Button) findViewById(R.id.askSubmitButton);
 
@@ -102,15 +101,26 @@ public class AskQuestionActivity extends Activity {
 	
 
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.logout_menu, menu);
+		getMenuInflater().inflate(R.menu.general_menu, menu);
 		return true;
 	}
-
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.log_out) {
+		
+		if (id == R.id.my_profile) {
+			//Go to Profile Page
+			Intent profileIntent = new Intent(AskQuestionActivity.this,ProfileActivity.class);
+			AskQuestionActivity.this.startActivity(profileIntent);
+			return true;
+		}
+		if(id == R.id.log_out){
 			logout();
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}

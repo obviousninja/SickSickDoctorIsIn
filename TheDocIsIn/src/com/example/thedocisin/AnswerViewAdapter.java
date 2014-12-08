@@ -69,11 +69,13 @@ public class AnswerViewAdapter extends BaseAdapter{
 			@Override
 			public void onClick(View v) {
 				// TODO Implement upvotes.
-				serviceHelper.changeScore(item.getaid(), "up");
-				item.setaScr(item.getaScr() + 1);
-				scoreView.setText(Integer.toString(item.getaScr()));
-				upvoteButton.setOnClickListener(null);
-				downvoteButton.setOnClickListener(null);
+				if(!item.getansID().equals(serviceHelper.getCurrentUser())){
+					serviceHelper.changeScore(item.getaid(), "up");
+					item.setaScr(item.getaScr() + 1);
+					scoreView.setText(Integer.toString(item.getaScr()));
+					upvoteButton.setOnClickListener(null);
+					downvoteButton.setOnClickListener(null);
+				}
 			}
 			
 		});
@@ -83,11 +85,13 @@ public class AnswerViewAdapter extends BaseAdapter{
 			@Override
 			public void onClick(View v) {
 				// TODO Implement downvotes.
-				serviceHelper.changeScore(item.getaid(), "dn");		
-				item.setaScr(item.getaScr() - 1);
-				scoreView.setText(Integer.toString(item.getaScr()));
-				upvoteButton.setOnClickListener(null);
-				downvoteButton.setOnClickListener(null);
+				if(!item.getansID().equals(serviceHelper.getCurrentUser())){
+					serviceHelper.changeScore(item.getaid(), "dn");		
+					item.setaScr(item.getaScr() - 1);
+					scoreView.setText(Integer.toString(item.getaScr()));
+					upvoteButton.setOnClickListener(null);
+					downvoteButton.setOnClickListener(null);
+				}
 			}
 			
 		});

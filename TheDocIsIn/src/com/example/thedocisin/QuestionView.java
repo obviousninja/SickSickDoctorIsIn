@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class QuestionView extends Activity {
 
@@ -56,13 +57,15 @@ public class QuestionView extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO This should start the AnswerQuestion activity.
-				// The question to be answered is theQuestion.
-				Intent answerViewIntent = new Intent(getApplicationContext(),AnswerQuestionActivity.class);
-//				answerViewIntent.fillIn(theQuestion.toIntent(), 0);
-				answerViewIntent.putExtra("qid", theQuestion.getqid());
-				QuestionView.this.startActivityForResult(answerViewIntent,MainActivity.REQUEST_CODE);
 				
+				if(!theQuestion.getaskID().equals(serviceHelper.getCurrentUser())){
+					Intent answerViewIntent = new Intent(getApplicationContext(),AnswerQuestionActivity.class);
+					answerViewIntent.putExtra("qid", theQuestion.getqid());
+					answerViewIntent.putExtra("qTxt", theQuestion.getqTxt());
+					QuestionView.this.startActivityForResult(answerViewIntent,MainActivity.REQUEST_CODE);
+				} else {
+					Toast.makeText(mContext, "You cannot answer your own question.", Toast.LENGTH_LONG).show();
+				}
 			}
 			
 		});
@@ -91,22 +94,26 @@ public class QuestionView extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.logout_menu, menu);
+		getMenuInflater().inflate(R.menu.general_menu, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.log_out) {
 			logout();
+			return true;
+		}
+		
+		if(id == R.id.my_profile){
+			Intent profileIntent = new Intent(QuestionView.this,ProfileActivity.class);
+			QuestionView.this.startActivity(profileIntent);
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
 	
 	@Override
 	public void onResume(){

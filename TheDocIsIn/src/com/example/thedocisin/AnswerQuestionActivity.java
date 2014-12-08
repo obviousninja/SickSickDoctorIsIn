@@ -18,6 +18,7 @@ public class AnswerQuestionActivity extends Activity {
 	EditText answer;
 	Button cancel, submit;
 	private int qid;
+	private String qTxt;
 	private HTTPServicesTask serviceHelper;
 	
 	@Override
@@ -29,12 +30,15 @@ public class AnswerQuestionActivity extends Activity {
 		
 		serviceHelper = HTTPServicesTask.getInstance();
 		qid = intent.getIntExtra("qid", -1);
+		qTxt = intent.getStringExtra("qTxt");
 		
 		
 		questionText = (TextView) findViewById(R.id.answerQuestionText);
 		answer = (EditText) findViewById(R.id.answerAnswerEditText);
 		cancel = (Button) findViewById(R.id.answerCancelButton);
 		submit = (Button) findViewById(R.id.answerSubmitButton);
+		
+		questionText.setText(qTxt);
 		
 		cancel.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -67,16 +71,28 @@ public class AnswerQuestionActivity extends Activity {
 	
 
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.logout_menu, menu);
+		getMenuInflater().inflate(R.menu.general_menu, menu);
 		return true;
 	}
-
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.log_out) {
+		
+		if (id == R.id.my_profile) {
+			//Go to Profile Page
+			Intent profileIntent = new Intent(AnswerQuestionActivity.this,ProfileActivity.class);
+			AnswerQuestionActivity.this.startActivity(profileIntent);
+			return true;
+		}
+		if(id == R.id.log_out){
 			logout();
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
 }

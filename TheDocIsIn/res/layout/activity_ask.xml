@@ -23,12 +23,12 @@
         android:id="@+id/askCategorySpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/askByLocation"
-        android:layout_alignLeft="@+id/askByLocation"
-        android:layout_marginBottom="20dp"
+		android:layout_centerVertical="true"
+        android:layout_marginBottom="40dp"
         android:entries="@array/categories"
         android:prompt="@string/pickCategory" />
 
+    <!-- 
     <CheckBox
         android:id="@+id/askByLocation"
         android:layout_width="wrap_content"
@@ -36,15 +36,16 @@
         android:layout_alignLeft="@+id/askEnterQuestion"
         android:layout_centerVertical="true"
         android:text="@string/others_near_you" />
+        -->
 
     <Button
         android:id="@+id/askCancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/askByLocation"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
         android:layout_marginBottom="32dp"
-        android:layout_marginLeft="18dp"
+        android:layout_marginLeft="44dp"
         android:background="#ff0000"
         android:text="@string/cancel" />
 
@@ -54,7 +55,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/askCancelButton"
         android:layout_alignBottom="@+id/askCancelButton"
-        android:layout_toRightOf="@+id/askByLocation"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight = "44dp"
         android:background="#00ff00"
         android:text="@string/submit" />
 

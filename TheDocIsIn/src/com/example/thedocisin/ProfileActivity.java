@@ -48,7 +48,7 @@ public class ProfileActivity extends Activity{
 	
 
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.logout_menu, menu);
+		getMenuInflater().inflate(R.menu.profile_menu, menu);
 		return true;
 	}
 
