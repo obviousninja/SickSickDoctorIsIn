@@ -11,9 +11,9 @@
     <string name="sports_desc">sports</string>
     <string name="religion_desc">religion</string>
     <string name="other_desc">other</string>
-    <string name="amount_of_coins">Amount of Coins:  </string>
-    <string name="number_of_questions">Total Asked:  </string>
-    <string name="number_of_answers">Total Answered:  </string>
+    <string name="amount_of_coins">Amount of Coins:   </string>
+    <string name="number_of_questions">Total Asked:       </string>
+    <string name="number_of_answers">Total Answered:    </string>
 	<string name="blank"> </string>
 	
 	

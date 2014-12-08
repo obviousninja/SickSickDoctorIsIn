@@ -19,6 +19,7 @@ public class HTTPServicesTask {
 	private QuestionView qview;
 	private ProfileActivity profile;
 	private String userID;
+	private MainActivity main;
 	
 	public static HTTPServicesTask getInstance(Context context){
 		if(sInstance == null && mContext == null){
@@ -48,7 +49,7 @@ public class HTTPServicesTask {
 	
 	public String getCurrentUser() { return userID; }
 
-
+	public void setMain(MainActivity main){this.main = main;}
 	public void setProfileAct(ProfileActivity profile){this.profile = profile;}
 	public void setCurrentUser(String userID){this.userID = userID;};
 	public void setLogger(Logger logger){this.logger = logger;}
@@ -161,6 +162,10 @@ public class HTTPServicesTask {
 				qview.setAnswers(result);
 			}else if(result.get(0).equals("getUserInfo")){
 				profile.setUserInfo(sendToHash(result));
+			}else if(result.get(0).equals("askQuestion")){
+				if(((Boolean) result.get(1)) == false){
+					main.askedQuestion(false);
+				}
 			}
 		}
 		
@@ -184,7 +189,7 @@ public class HTTPServicesTask {
 				map.put(UsersDBSim.QANS, (String) result.get(i));
 				break;
 			case 6:
-				map.put(UsersDBSim.ASCR, (String) result.get(i));
+				map.put(UsersDBSim.COINS, (String) result.get(i));
 				break;
 			}
 		}

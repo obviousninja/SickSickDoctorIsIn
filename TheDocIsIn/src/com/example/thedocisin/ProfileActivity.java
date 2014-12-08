@@ -39,6 +39,7 @@ public class ProfileActivity extends Activity{
 		this.asked_edit.setText(map.get(UsersDBSim.QASK));
 		this.answered_edit.setText(map.get(UsersDBSim.QANS));
 	}
+	
 	public void logOut(){
 		setResult(MainActivity.LOGOUT_RESULT);
 		finish();

@@ -194,8 +194,30 @@ public class DBManager {
 		qid = Integer.parseInt(str);
 		
 		System.out.println("ANSWERING QUESTION WITH ID "  + str + " AND TEXT: " + atxt);
+				
+		Cursor uC = udatabase.query(UsersDBSim.TABLE_NAME,
+				new String[] {UsersDBSim.USER_ID, UsersDBSim.QANS, UsersDBSim.COINS}, 
+				UsersDBSim.USER_ID + "=?", 
+				new String[] {ansid}, 
+				null, null, null, null);
+
+		uC.moveToPosition(0);
+
+		int oldValAns = uC.getInt(1);
+		int oldValCoins = uC.getInt(2);
+
+		System.out.println("old value: " + oldValAns + "\nold coins:" + oldValCoins);
 		
 		ContentValues values = new ContentValues();
+		values.put(UsersDBSim.QANS, oldValAns + 1);
+		values.put(UsersDBSim.COINS, oldValCoins + 5);
+		
+		udatabase.update(UsersDBSim.TABLE_NAME, 
+				values, 
+				UsersDBSim.USER_ID + "=?", 
+				new String[] {ansid});
+		
+	
 		
 		values.clear();
 		values.put(AnswersDBSim.QID, qid);
@@ -277,6 +299,8 @@ public class DBManager {
 	}
 
 	private ArrayList<Object> askQuestion(String[] split) {
+		ArrayList<Object> result = new ArrayList<Object>();
+
 		String userid = "";
 		String qtxt = "";
 		String cat = "";
@@ -292,18 +316,24 @@ public class DBManager {
 		}
 		
 		Cursor uC = udatabase.query(UsersDBSim.TABLE_NAME,
-				new String[] {UsersDBSim.USER_ID, UsersDBSim.QASK}, 
+				new String[] {UsersDBSim.USER_ID, UsersDBSim.QASK, UsersDBSim.COINS}, 
 				UsersDBSim.USER_ID + "=?", 
 				new String[] {userid}, 
 				null, null, null, null);
 
 		uC.moveToPosition(0);
 
-		int oldVal = uC.getInt(1);
-		System.out.println("old value: " + oldVal);
+		int oldValAsk = uC.getInt(1);
+		int oldValCoins = uC.getInt(2);
+		if(oldValCoins < 5){
+			result.add(false);
+			return result;
+		}
+		System.out.println("old value: " + oldValAsk + "\nold coins:" + oldValCoins);
 		
 		ContentValues values = new ContentValues();
-		values.put(UsersDBSim.QASK, oldVal + 1);
+		values.put(UsersDBSim.QASK, oldValAsk + 1);
+		values.put(UsersDBSim.COINS, oldValCoins - 5);
 		
 		udatabase.update(UsersDBSim.TABLE_NAME, 
 				values, 
@@ -327,12 +357,8 @@ public class DBManager {
 		values.put(QuestionsDBSim.ASK_ID, userid);
 		values.put(QuestionsDBSim.QTXT, qtxt);
 		values.put(QuestionsDBSim.CAT, cat);
-//		values.put(QuestionsDBSim.ANS_ID, ".");
-//		values.put(QuestionsDBSim.ASCR, 0);
-//		values.put(QuestionsDBSim.ATXT, "...");
 		System.out.println("INSERTING THE QUESTION.........." + qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values));
 		
-		ArrayList<Object> result = new ArrayList<Object>();
 		result.add(true);
 		return result;
 	}
@@ -413,7 +439,7 @@ public class DBManager {
 		values.put(UsersDBSim.PASSWORD, password);
 		values.put(UsersDBSim.QASK, 0);
 		values.put(UsersDBSim.QANS, 0);
-		values.put(UsersDBSim.ASCR, 0);
+		values.put(UsersDBSim.COINS, 75);
 		udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
 		result.add(true);
 		return result;
@@ -506,7 +532,7 @@ public class DBManager {
 	   values.put(UsersDBSim.PASSWORD, "pass");
 	   values.put(UsersDBSim.QASK, 5);
 	   values.put(UsersDBSim.QANS, 6);
-	   values.put(UsersDBSim.ASCR, 5);
+	   values.put(UsersDBSim.COINS, 5);
 	   
 	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
 
@@ -516,7 +542,7 @@ public class DBManager {
 	   values.put(UsersDBSim.PASSWORD, "pass");
 	   values.put(UsersDBSim.QASK, 14);
 	   values.put(UsersDBSim.QANS, 3);
-	   values.put(UsersDBSim.ASCR, 12);
+	   values.put(UsersDBSim.COINS, 12);
 
 	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
 	   
@@ -526,7 +552,7 @@ public class DBManager {
 	   values.put(UsersDBSim.PASSWORD, "q");
 	   values.put(UsersDBSim.QASK, 14);
 	   values.put(UsersDBSim.QANS, 3);
-	   values.put(UsersDBSim.ASCR, 12);
+	   values.put(UsersDBSim.COINS, 12);
 
 	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
 	   
@@ -536,7 +562,7 @@ public class DBManager {
 	   values.put(UsersDBSim.PASSWORD, "q");
 	   values.put(UsersDBSim.QASK, 14);
 	   values.put(UsersDBSim.QANS, 3);
-	   values.put(UsersDBSim.ASCR, 12);
+	   values.put(UsersDBSim.COINS, 12);
 
 	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
 	   
@@ -546,7 +572,7 @@ public class DBManager {
 	   values.put(UsersDBSim.PASSWORD, "q");
 	   values.put(UsersDBSim.QASK, 14);
 	   values.put(UsersDBSim.QANS, 3);
-	   values.put(UsersDBSim.ASCR, 12);
+	   values.put(UsersDBSim.COINS, 12);
 
 	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
 	   
@@ -556,7 +582,7 @@ public class DBManager {
 	   values.put(UsersDBSim.PASSWORD, "q");
 	   values.put(UsersDBSim.QASK, 14);
 	   values.put(UsersDBSim.QANS, 3);
-	   values.put(UsersDBSim.ASCR, 12);
+	   values.put(UsersDBSim.COINS, 12);
 
 	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
 	   

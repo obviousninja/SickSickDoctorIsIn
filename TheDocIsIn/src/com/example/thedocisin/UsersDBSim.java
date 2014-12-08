@@ -13,9 +13,8 @@ public class UsersDBSim extends SQLiteOpenHelper{
 	final static String PASSWORD = "password";
 	final static String QASK = "Q_Ask";
 	final static String QANS = "Q_Ans";
-	final static String ASCR = "A_Scr";
 	final static String COINS = "coins";
-	final static String[] columns = { USER_ID, USER_NAME, PASSWORD, QASK, QANS, ASCR};
+	final static String[] columns = { USER_ID, USER_NAME, PASSWORD, QASK, QANS, COINS};
 	
 	
 	
@@ -27,7 +26,7 @@ public class UsersDBSim extends SQLiteOpenHelper{
 			+ PASSWORD + " TEXT NOT NULL, "
 			+ QASK + " INTEGER , "
 			+ QANS +" INTEGER , "
-			+ ASCR + " INTEGER )";
+			+ COINS + " INTEGER )";
 
 	final private static String NAME = "user_db";
 	final private static Integer VERSION = 1;

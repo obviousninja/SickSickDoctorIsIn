@@ -9,13 +9,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	
 	final String TAG = "TheDocIsIn";
 	final static int REQUEST_CODE = 0;
 	final static int LOGOUT_RESULT = 1;
-
+	private HTTPServicesTask serviceHelper;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,6 +29,10 @@ public class MainActivity extends Activity {
 		ImageView sports_view = (ImageView) findViewById(R.id.sports_view);
 		ImageView religion_view = (ImageView) findViewById(R.id.religion_view);
 		ImageView other_view = (ImageView) findViewById(R.id.other_view);
+		
+		serviceHelper = HTTPServicesTask.getInstance();
+		serviceHelper.setMain(this);
+		
 		
 		food_view.setOnClickListener(new View.OnClickListener() {
 			
@@ -139,6 +145,10 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	public void askedQuestion(boolean b) {
+		Toast.makeText(getApplicationContext(), "Not enough coins.", Toast.LENGTH_SHORT).show();		
 	}
 	
 
