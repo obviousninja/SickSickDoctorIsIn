@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -37,6 +39,24 @@ public class ProfileActivity extends Activity{
 		this.asked_edit.setText(map.get(UsersDBSim.QASK));
 		this.answered_edit.setText(map.get(UsersDBSim.QANS));
 	}
+	public void logOut(){
+		setResult(MainActivity.LOGOUT_RESULT);
+		finish();
+	}
 	
+
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.logout_menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		if (id == R.id.log_out) {
+			logOut();
+		}
+		return super.onOptionsItemSelected(item);
+	}
 	
 }
