@@ -54,7 +54,7 @@ public class QuestionList extends ListActivity {
 				// TODO This should call the AskQuestion activity.
 				Intent i = new Intent(mContext, AskQuestionActivity.class);
 				i.putExtra("Category", mCategory);
-				QuestionList.this.startActivity(i);
+				QuestionList.this.startActivityForResult(i, MainActivity.REQUEST_CODE);
 			}
 			
 		});
@@ -66,8 +66,13 @@ public class QuestionList extends ListActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.question_view, menu);
+		getMenuInflater().inflate(R.menu.logout_menu, menu);
 		return true;
+	}
+	
+	public void logOut(){
+		setResult(MainActivity.LOGOUT_RESULT);
+		finish();
 	}
 
 
@@ -77,7 +82,8 @@ public class QuestionList extends ListActivity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		if (id == R.id.log_out) {
+			logOut();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -103,4 +109,15 @@ public class QuestionList extends ListActivity {
 		mAdapter.setItems(this.questions);
 	
 	}
+<<<<<<< HEAD
 }
+=======
+	
+	public void onActivityResult(int requestCode, int resultCode, Intent data){
+		if(resultCode == MainActivity.LOGOUT_RESULT){
+			logOut();			
+		}
+	}
+
+}
+>>>>>>> origin/master

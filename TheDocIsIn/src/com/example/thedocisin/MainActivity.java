@@ -13,6 +13,8 @@ import android.widget.ImageView;
 public class MainActivity extends Activity {
 	
 	final String TAG = "TheDocIsIn";
+	final static int REQUEST_CODE = 0;
+	final static int LOGOUT_RESULT = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class MainActivity extends Activity {
 				// Go to food question list
 				Intent i = new Intent(getApplicationContext(), QuestionList.class);
 				i.putExtra("Category", "Food");
-				MainActivity.this.startActivity(i);
+				MainActivity.this.startActivityForResult(i, REQUEST_CODE);
 			}
 		});
 		
@@ -43,8 +45,8 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// Go to entertainment question list
 				Intent i = new Intent(getApplicationContext(), QuestionList.class);
-				i.putExtra("Category", "Entertainment");
-				MainActivity.this.startActivity(i);
+				i.putExtra("Category", "Entertainment");;
+				MainActivity.this.startActivityForResult(i, REQUEST_CODE);
 			}
 		});
 		
@@ -55,7 +57,7 @@ public class MainActivity extends Activity {
 				// Go to personal question list 	
 				Intent i = new Intent(getApplicationContext(), QuestionList.class);
 				i.putExtra("Category", "Personal");
-				MainActivity.this.startActivity(i);
+				MainActivity.this.startActivityForResult(i, REQUEST_CODE);
 			}
 		});
 		
@@ -66,7 +68,7 @@ public class MainActivity extends Activity {
 				// Go to sports question list 
 				Intent i = new Intent(getApplicationContext(), QuestionList.class);
 				i.putExtra("Category", "Sports");
-				MainActivity.this.startActivity(i);
+				MainActivity.this.startActivityForResult(i, REQUEST_CODE);
 			}
 		});
 		
@@ -77,7 +79,7 @@ public class MainActivity extends Activity {
 				// Go to religion question list 
 				Intent i = new Intent(getApplicationContext(), QuestionList.class);
 				i.putExtra("Category", "Religion");
-				MainActivity.this.startActivity(i);
+				MainActivity.this.startActivityForResult(i, REQUEST_CODE);
 			}
 		});
 		
@@ -88,11 +90,20 @@ public class MainActivity extends Activity {
 				// Go to other question list
 				Intent i = new Intent(getApplicationContext(), QuestionList.class);
 				i.putExtra("Category", "Other");
-				MainActivity.this.startActivity(i);
+				MainActivity.this.startActivityForResult(i, REQUEST_CODE);
 			}
 		});
 		
 		
+	}
+	
+	public void onActivityResult(int requestCode, int resultCode, Intent data){
+		if(resultCode == LOGOUT_RESULT)
+			logOut();
+	}
+	
+	public void logOut(){
+		finish();
 	}
 
 	@Override
@@ -118,9 +129,13 @@ public class MainActivity extends Activity {
 			Log.i(TAG, "Before creating intent");
 			Intent askIntent = new Intent(MainActivity.this,AskQuestionActivity.class);
 			Log.i(TAG, "After creating intent");
-			askIntent.putExtra("Category", "Other");
-			startActivity(askIntent);
+			askIntent.putExtra("Category", "Other");;
+			MainActivity.this.startActivityForResult(askIntent, REQUEST_CODE);
 			Log.i(TAG, "After starting intent");
+			return true;
+		}
+		if(id == R.id.log_out){
+			logOut();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
