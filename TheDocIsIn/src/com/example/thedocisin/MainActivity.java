@@ -14,16 +14,12 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 	
 	final String TAG = "TheDocIsIn";
-<<<<<<< HEAD
 	final static int REQUEST_CODE = 0;
 	final static int LOGOUT_RESULT = 1;
 	private HTTPServicesTask serviceHelper;
-	
-=======
-	final static int REQUEST_CODE = 10;
-	final static int LOGOUT_RESULT = 11;
 
->>>>>>> origin/master
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -35,15 +31,11 @@ public class MainActivity extends Activity {
 		ImageView sports_view = (ImageView) findViewById(R.id.sports_view);
 		ImageView religion_view = (ImageView) findViewById(R.id.religion_view);
 		ImageView other_view = (ImageView) findViewById(R.id.other_view);
-<<<<<<< HEAD
+
 		
 		serviceHelper = HTTPServicesTask.getInstance();
 		serviceHelper.setMain(this);
-		
-		
-=======
-				
->>>>>>> origin/master
+
 		food_view.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

@@ -100,18 +100,12 @@ public class HTTPServicesTask {
 			result.add(params[0]);
 			
 			
-			for(int i = 0; i < params.length; i++){
-				System.out.println(params[i]);
-			}
-			
+
 			
 			if(params[0].equals("verifyUserPass")){
 				ArrayList<Object> res = dbmanager.request(url + "&req=" + params[0] + "&usr=" + 
 									params[1] + "&pas=" + params[2]);
-				System.out.println(res.toString());
 				result.add((Boolean) res.get(0));
-				System.out.println(result.toString());
-
 			}else if(params[0].equals("registerUser")){
 				String reqString = url + "&req=" + params[0] + "&usr=" + params[1] + "&pas=" + params[2] + 
 						"&nam=" + params[3];

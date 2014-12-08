@@ -2,6 +2,7 @@ package com.example.thedocisin;
 
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -19,7 +20,6 @@ public class DBManager {
 	private SQLiteDatabase adatabase;
 	private Context mContext;
 	private static DBManager sInstance;
-//	private HTTPServicesTask serviceHelper;
 	
 	public static DBManager getInstance(Context context){
 		if(sInstance == null){
@@ -77,7 +77,6 @@ public class DBManager {
 
 	public ArrayList<Object> request(String input) {
 		ArrayList<Object> result = null;
-		System.out.println("request:    " + input );
 		input = (String) input.subSequence(19, input.length());
 		
 		String[] split = input.split("&");
@@ -100,10 +99,6 @@ public class DBManager {
 			result = getUserInfo(split);
 		}
 		
-		System.out.println("printing result");
-		for(int i = 0 ; i < result.size(); i++){
-			System.out.println(result.get(i));
-		}
 		return result;
 	}
 	
@@ -129,7 +124,6 @@ public class DBManager {
 			result.add(uc.getString(i));
 		}
 		
-		System.out.println("PRINTING RESULT FOR USER INFO " + result);
 		return result;
 		
 	}
@@ -193,7 +187,6 @@ public class DBManager {
 		
 		qid = Integer.parseInt(str);
 		
-		System.out.println("ANSWERING QUESTION WITH ID "  + str + " AND TEXT: " + atxt);
 				
 		Cursor uC = udatabase.query(UsersDBSim.TABLE_NAME,
 				new String[] {UsersDBSim.USER_ID, UsersDBSim.QANS, UsersDBSim.COINS}, 
@@ -206,7 +199,6 @@ public class DBManager {
 		int oldValAns = uC.getInt(1);
 		int oldValCoins = uC.getInt(2);
 
-		System.out.println("old value: " + oldValAns + "\nold coins:" + oldValCoins);
 		
 		ContentValues values = new ContentValues();
 		values.put(UsersDBSim.QANS, oldValAns + 1);
@@ -224,10 +216,8 @@ public class DBManager {
 		values.put(AnswersDBSim.ANS_ID, ansid);
 		values.put(AnswersDBSim.ATXT, atxt);
 		values.put(AnswersDBSim.ASCR, 0);
-		System.out.println("INSERTING THE answer.........." + adatabase.insert(AnswersDBSim.TABLE_NAME, null, values));
 		
 		result.add(true);
-		System.out.println(" AND THE WINNER ISSSSSS : " + result);
 		return result;	
 		
 	}
@@ -244,7 +234,6 @@ public class DBManager {
 				break;
 			}
 		}
-		System.out.println("LOOKING FOR QID " + qid);
 		
 		Cursor aC = adatabase.query(AnswersDBSim.TABLE_NAME,
 				AnswersDBSim.columns,
@@ -252,7 +241,6 @@ public class DBManager {
 				new String[] {qid},
 				null, null, null, null);
 		
-		System.out.println("FOUND  " + aC.getCount() + "  ANSWERS");
 		
 		while(aC.moveToNext()){
 			Answer a = new Answer(aC.getInt(0), aC.getInt(1), aC.getString(2), aC.getString(3), aC.getInt(4));
@@ -282,15 +270,9 @@ public class DBManager {
 				null, null, null, null);
 		
 		
-//		int qid, String askid, String qtxt, String ansid, String atxt, int aScr, String category
 		while(qC.moveToNext()){
 			Question q = new Question(qC.getInt(0), qC.getString(1), qC.getString(2), qC.getString(3));
-			System.out.println("DETECTING QID " + qC.getString(0));
-			System.out.println("DETECTING ASKID " + qC.getString(1));
-			System.out.println("DETECTING QTXT " + qC.getString(2));
-			System.out.println("DETECTING CAT " + qC.getString(3));
-			
-			System.out.println("question: " + q);
+
 			q.setname(getName(qC.getString(1)));
 			result.add(q);
 		}
@@ -329,7 +311,6 @@ public class DBManager {
 			result.add(false);
 			return result;
 		}
-		System.out.println("old value: " + oldValAsk + "\nold coins:" + oldValCoins);
 		
 		ContentValues values = new ContentValues();
 		values.put(UsersDBSim.QASK, oldValAsk + 1);
@@ -348,16 +329,12 @@ public class DBManager {
 				null, null, null, null);
 
 		uC.moveToPosition(0);
-
-		int newVal = uC.getInt(1);
-		System.out.println("new value: " + newVal);
 		
 		values.clear();
 		values.clear();
 		values.put(QuestionsDBSim.ASK_ID, userid);
 		values.put(QuestionsDBSim.QTXT, qtxt);
 		values.put(QuestionsDBSim.CAT, cat);
-		System.out.println("INSERTING THE QUESTION.........." + qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values));
 		
 		result.add(true);
 		return result;
@@ -448,7 +425,6 @@ public class DBManager {
 	
 	
 	private String getName(String userid){
-		System.out.println("TRYING TO GET NAME CORRESPONDING TO " + userid);
 		Cursor uC = udatabase.query(UsersDBSim.TABLE_NAME,
 				new String[] {UsersDBSim.USER_ID, UsersDBSim.USER_NAME}, 
 				UsersDBSim.USER_ID + "=?", 
@@ -456,184 +432,127 @@ public class DBManager {
 				null, null, null, null);
 		
 		uC.moveToNext();
-		System.out.println("COLUMN COUNT : " + uC.getColumnCount());
 		
 		if(uC.getCount() > 0){
 			System.out.println("RETURNING " + uC.getString(1));
 			return uC.getString(1);
 		}
-		System.out.println("RETURNING can't find");
-		return "can't find";		
+		return "";		
 	}
 	
 	
 	
-	public void populate(){
-//		int qid = 1;
-//		if(serviceHelper == null){
-//			serviceHelper = HTTPServicesTask.getInstance();
-//		}
+	public void populate(){		
 		
-//		serviceHelper.registerUser("user1", "pass", "monster");
-//		serviceHelper.registerUser("user2@user.com", "pass", "monster");
-//		serviceHelper.registerUser("user3@user.com", "pass", "monster");
-//		serviceHelper.registerUser("user4@user.com", "pass", "Mailman Joe");
-//		serviceHelper.registerUser("user5@user.com", "pass", "Unidentified User");
-//
-//		
-//		serviceHelper.askQuestion("user1", "Who was Julius Caesar?", "Other");
-//		serviceHelper.answerQuestion("user5@user.com", qid, "Some guy.");
-//		serviceHelper.answerQuestion("user2@user.com", qid, "Inventor of the Caesar Salad");
-//		serviceHelper.answerQuestion("user4@user.com", qid, "Main character of a Shakespeare play.");
-//		
-//		qid++;
-//		serviceHelper.askQuestion("user2@user.com", "What's the point of this app?", "Other");
-//
-//		qid++;
-//		serviceHelper.askQuestion("user3@user.com", "Something offenstive.", "Other");
-//
-//		qid++;
-//		serviceHelper.askQuestion("user1", "When is the Maryland Basketball game?", "Sports");
-//		serviceHelper.answerQuestion("user2@user.com", qid, "8pm Eastern.");
-//		serviceHelper.answerQuestion("user5@user.com", qid, "Who cares? They're going to lose anyways.");
-//		
-//		qid++;
-//		serviceHelper.askQuestion("user1", "How many teams are in the NFL?", "Sports");
-//		serviceHelper.answerQuestion("user2@user.com", qid, "32. 16 in the AFC and 16 in the NFC.");
-//		serviceHelper.answerQuestion("user5@user.com", qid, "Sounds like something a girl would ask.");
-//		serviceHelper.answerQuestion("user4@user.com", qid, "GOOOOO RAVENSSSSS!!!!");
-//		
-//		qid++;
-//		serviceHelper.askQuestion("user4@user.com", "How do they decide who makes it into the playoffs?",  "Sports");
-//		serviceHelper.answerQuestion("user5@user.com", qid, "It's a very complicated process. " +
-//				"I would suggest going to http://www.nfl.com.");
-//		serviceHelper.answerQuestion("user3@user.com", qid, "It's not that hard, it's based on season record.");
-//		
-//		qid++;
-//		serviceHelper.askQuestion("user3@user.com", "What's the score of the Cowboys game?", "Sports");
-//		serviceHelper.answerQuestion("user1", qid, "32-17 Cowboys.");
-//		serviceHelper.answerQuestion("user1", qid, "Nevermind, 32 - 24 Cowboys.");
-//		serviceHelper.answerQuestion("user1", qid, "Oh. The titans are going at it. 32-31");
-//		serviceHelper.answerQuestion("user1", qid, "Jesus. 38-32 Titans!");
-//		
-//		qid++;
-//		serviceHelper.askQuestion("user5@user.com", "When does baseball season really start/end?", "Sports");
-//		serviceHelper.answerQuestion("user4@user.com", qid, "You're an ass hole, 'unidentified user'.");
-//		
-//		qid++;
-//		serviceHelper.askQuestion("user1", "ughhhhh", "Sports");
+		ArrayList<String> list = new ArrayList<String>();
+		ArrayList<String> questions = new ArrayList<String>();
 		
+		insertUser(list, "user1");
+		insertUser(list, "ArcticMonkey");
+		insertUser(list, "MailmanJoe");
+		insertUser(list, "HippoFred");
+		insertUser(list, "xoxoxLipstickQueenxoxox");
+		insertUser(list, "SoccerBro");
+		insertUser(list, "SurfsUpDude");
+		insertUser(list, "GenericUserName");
+		insertUser(list, "SportsGuy");
+		insertUser(list, "HistoryBuff");
+		insertUser(list, "RenaisanceManJim");
+		insertUser(list, "UserUser");
+		insertUser(list, "CivicsRule");
 		
+		insertQuestion(list, questions, "How many teams are in the NFL?", "Sports");						//1
+		insertQuestion(list, questions, "When is the Maryland Basketball game?", "Sports");					//2
+		insertQuestion(list, questions, "How do they decide who makes it into the playoffs?", "Sports");	//3
+		insertQuestion(list, questions, "What's the score of the Cowboys game?", "Sports");					//4
+		insertQuestion(list, questions, "How many games are left in this NFL season?", "Sports");			//5
+		insertQuestion(list, questions, "When does baseball season really start/end?", "Sports");			//6
+		insertQuestion(list, questions, "When is the next world cup?", "Sports");							//7
+		insertQuestion(list, questions, "What's the best team in the NFL?", "Sports");						//8
+		insertQuestion(list, questions, "Was that call really necessary?! (Ravens)", "Sports");				//9
+		insertQuestion(list, questions, "How on earth did the ref think that was okay??", "Sports");		//10
+		insertQuestion(list, questions, "Tips for practicing soccer by yourself?", "Sports");				//11
+		insertQuestion(list, questions, "Was this question already asked?", "Sports");						//12
+		insertQuestion(list, questions, "What's the score of the Titans game?", "Sports");					//13
+		insertQuestion(list, questions, "How many games are left in this soccer season?", "Sports");		//14
+		insertQuestion(list, questions, "When is the College Pro Bowl?", "Sports");							//15
 		
-		/////////   USER_ID, USER_NAME, PASSWORD, QASK, QANS, ASCR}
-	   ContentValues values = new ContentValues();
-	   values.put(UsersDBSim.USER_ID, "user1");
-	   values.put(UsersDBSim.USER_NAME, "user1name");
-	   values.put(UsersDBSim.PASSWORD, "pass");
-	   values.put(UsersDBSim.QASK, 5);
-	   values.put(UsersDBSim.QANS, 6);
-	   values.put(UsersDBSim.COINS, 5);
-	   
-	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
+		insertQuestion(list, questions, "What's the point of this app?", "Other");							//16
+		insertQuestion(list, questions, "Something offenstive.", "Other");									//17
+		insertQuestion(list, questions, "What's the meaning of life?", "Other");							//18
+		insertQuestion(list, questions, "How is this any different from yahoo answers?", "Other");			//19
+		insertQuestion(list, questions, "Is anyone even really reading these?", "Other");					//20
+		insertQuestion(list, questions, "This is just an example. What's next?", "Other");					//21
+		insertQuestion(list, questions, "Some questions are here.", "Other");								//22
+		insertQuestion(list, questions, "Well hello there, how're you?", "Other");							//23
+		insertQuestion(list, questions, "I couldn't fit this into any other category but...", "Other");		//24
+		insertQuestion(list, questions, "This is stupid... but", "Other");									//25
+		insertQuestion(list, questions, "I can't believe it's not butter!", "Other");						//26
+		insertQuestion(list, questions, "Why so serious?", "Other");										//27
+		insertQuestion(list, questions, "When is the next star wars actually coming out?", "Other");		//28
+		insertQuestion(list, questions, "Is family guy even good?", "Other");								//29
 
-	   values.clear();
-	   values.put(UsersDBSim.USER_ID, "user2@user.u");
-	   values.put(UsersDBSim.USER_NAME, "user2");
-	   values.put(UsersDBSim.PASSWORD, "pass");
-	   values.put(UsersDBSim.QASK, 14);
-	   values.put(UsersDBSim.QANS, 3);
-	   values.put(UsersDBSim.COINS, 12);
+		
+		insertAnswer(list, questions, 4, "32-16 Titans.");
+		insertAnswer(list, questions, -1, "I just need coins!!");
+		insertAnswer(list, questions, -1, "I just need coins!!");
+		insertAnswer(list, questions, -1, "I just need coins!!");
+		insertAnswer(list, questions, -1, "I just need coins!!");
+		insertAnswer(list, questions, -1, "I just need coins!!");
+		insertAnswer(list, questions, -1, "I just need coins!!");
+		insertAnswer(list, questions, -1, "I just need coins!!");
+		insertAnswer(list, questions, -1, "I just need coins!!");
+		insertAnswer(list, questions, -1, "I just need coins!!");
+		insertAnswer(list, questions, -1, "I just need coins!!");
+		insertAnswer(list, questions, -1, "I just need coins!!");
+		insertAnswer(list, questions, -1, "I just need coins!!");
+		insertAnswer(list, questions, -1, "I just need coins!!");
+		insertAnswer(list, questions, -1, "I just need coins!!");
+		insertAnswer(list, questions, -1, "I just need coins!!");
+		insertAnswer(list, questions, -1, "I just need coins!!");
+		insertAnswer(list, questions, -1, "I just need coins!!");
+		insertAnswer(list, questions, -1, "I just need coins!!");
+		insertAnswer(list, questions, -1, "I just need coins!!");
 
-	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
-	   
-	   values.clear();
-	   values.put(UsersDBSim.USER_ID, "q");
-	   values.put(UsersDBSim.USER_NAME, "q");
-	   values.put(UsersDBSim.PASSWORD, "q");
-	   values.put(UsersDBSim.QASK, 14);
-	   values.put(UsersDBSim.QANS, 3);
-	   values.put(UsersDBSim.COINS, 12);
-
-	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
-	   
-	   values.clear();
-	   values.put(UsersDBSim.USER_ID, "sportsguy@users.us");
-	   values.put(UsersDBSim.USER_NAME, "SportsGuy");
-	   values.put(UsersDBSim.PASSWORD, "q");
-	   values.put(UsersDBSim.QASK, 14);
-	   values.put(UsersDBSim.QANS, 3);
-	   values.put(UsersDBSim.COINS, 12);
-
-	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
-	   
-	   values.clear();
-	   values.put(UsersDBSim.USER_ID, "idiot@doesntknowit.com");
-	   values.put(UsersDBSim.USER_NAME, "IdiotGuy");
-	   values.put(UsersDBSim.PASSWORD, "q");
-	   values.put(UsersDBSim.QASK, 14);
-	   values.put(UsersDBSim.QANS, 3);
-	   values.put(UsersDBSim.COINS, 12);
-
-	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
-	   
-	   values.clear();
-	   values.put(UsersDBSim.USER_ID, "ass@ho.le");
-	   values.put(UsersDBSim.USER_NAME, "ass");
-	   values.put(UsersDBSim.PASSWORD, "q");
-	   values.put(UsersDBSim.QASK, 14);
-	   values.put(UsersDBSim.QANS, 3);
-	   values.put(UsersDBSim.COINS, 12);
-
-	   udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
-	   
-	   
-	   values.clear();
-	   values.put(QuestionsDBSim.ASK_ID, "user2@user.u");
-	   values.put(QuestionsDBSim.QTXT, "Who was Julius Caesar?");
-	   values.put(QuestionsDBSim.CAT, "Other");
-	   System.out.println(qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values));
-	   
-	   values.clear();
-	   values.put(QuestionsDBSim.ASK_ID, "user2@user.u");
-	   values.put(QuestionsDBSim.QTXT, "What time is the Maryland Basketball game?");
-	   values.put(QuestionsDBSim.CAT, "Sports");
-	   qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values);
-	   
-	   
-	   values.clear();
-	   values.put(QuestionsDBSim.ASK_ID, "user2@user.u");
-	   values.put(QuestionsDBSim.QTXT, "How many teams are in the NFL?");
-	   values.put(QuestionsDBSim.CAT, "Sports");
-	   qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values);
-	   
-	   values.clear();
-	   values.put(AnswersDBSim.QID, 1);
-	   values.put(AnswersDBSim.ANS_ID, "idiot@doesntknowit.com");
-	   values.put(AnswersDBSim.ATXT, "Inventer of the Caesar salad.");
-	   values.put(AnswersDBSim.ASCR, 1);
-	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
-	   
-	   values.clear();
-	   values.put(AnswersDBSim.QID, 2);
-	   values.put(AnswersDBSim.ANS_ID, "sportsguy@users.us");
-	   values.put(AnswersDBSim.ATXT, "8pm Eastern.");
-	   values.put(AnswersDBSim.ASCR, 4);
-	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
-	   
-	   values.clear();
-	   values.put(AnswersDBSim.QID, 3);
-	   values.put(AnswersDBSim.ANS_ID, "sportsguy@users.us");
-	   values.put(AnswersDBSim.ATXT, "32. 16 in the AFC and 16 in the NFC.");
-	   values.put(AnswersDBSim.ASCR, 5);
-	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
-
-	   values.clear();
-	   values.put(AnswersDBSim.QID, 3);
-	   values.put(AnswersDBSim.ANS_ID, "ass@ho.le");
-	   values.put(AnswersDBSim.ATXT, "What're you, some kind of idiot?");
-	   values.put(AnswersDBSim.ASCR, 1);
-	   adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
+		
 	}
+	
+	private void insertUser(ArrayList<String> list, String userName){
+			list.add(userName + "@user.com");
+			Random rand = new Random();
+		    ContentValues values = new ContentValues();
+		    values.put(UsersDBSim.USER_ID, userName + "@user.com");
+		    values.put(UsersDBSim.USER_NAME, userName);
+		    values.put(UsersDBSim.PASSWORD, "pass");
+		    values.put(UsersDBSim.QASK, rand.nextInt(50));
+		    values.put(UsersDBSim.QANS, rand.nextInt(50));
+		    values.put(UsersDBSim.COINS, 75);
+		   
+		    udatabase.insert(UsersDBSim.TABLE_NAME, null, values);
+	}
+	
+	private void insertQuestion(ArrayList<String> users, ArrayList<String> questions, String question, String cat){
+		ContentValues values = new ContentValues();
+		Random rand = new Random();
+		questions.add("true");
+		values.clear();
+		values.put(QuestionsDBSim.ASK_ID, users.get(rand.nextInt(users.size())));
+		values.put(QuestionsDBSim.QTXT, question);
+		values.put(QuestionsDBSim.CAT, cat);
+		qdatabase.insert(QuestionsDBSim.TABLE_NAME, null, values);
+	}
+	
+	private void insertAnswer(ArrayList<String> users, ArrayList<String> questions, int qid, String answer){
+		ContentValues values = new ContentValues();
+		Random rand = new Random();
+	    values.clear();
+	    values.put(AnswersDBSim.QID, qid<0? rand.nextInt(questions.size()):qid);
+	    values.put(AnswersDBSim.ANS_ID, users.get(rand.nextInt(users.size())));
+	    values.put(AnswersDBSim.ATXT, answer);
+	    values.put(AnswersDBSim.ASCR, rand.nextInt(100) - (qid < 0? 99:16));
+	    adatabase.insert(AnswersDBSim.TABLE_NAME, null, values);
+	}
+	
 	
 	
 }

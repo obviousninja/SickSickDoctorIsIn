@@ -35,16 +35,13 @@ public class ProfileActivity extends Activity{
 	}
 	
 	public void setUserInfo(HashMap<String, String> map){
-		this.coin_edit.setText(map.get(UsersDBSim.COINS));
-		this.asked_edit.setText(map.get(UsersDBSim.QASK));
-		this.answered_edit.setText(map.get(UsersDBSim.QANS));
+		this.coin_edit.setText("   " + map.get(UsersDBSim.COINS));
+		this.asked_edit.setText("            " + map.get(UsersDBSim.QASK));
+		this.answered_edit.setText("     " + map.get(UsersDBSim.QANS));
 	}
 	
-<<<<<<< HEAD
-	public void logOut(){
-=======
+
 	public void logout(){
->>>>>>> origin/master
 		setResult(MainActivity.LOGOUT_RESULT);
 		finish();
 	}
