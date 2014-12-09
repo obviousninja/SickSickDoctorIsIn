@@ -51,16 +51,16 @@ var text12 = "<div><b>Testing Done:</b><br><p>We did a few cases of user testing
     $("#description").append("<p></p>",text1, text2, text3, text4, text5, text6, text7, text8, text9, text10, text11, text12 );
     
     //screenshot1
-    $("#screenshot1").append("<img id='sample1' src='sample.png' alt='doctor' height='100' width='350' >");
+    $("#screenshot1").append("<img id='sample1' src='sample1.png' alt='doctor' height='100' width='350' >");
     $("#screenshot1").css({"border":"solid", "borderRadius":"10px", "top":"605px", "left":"20px", "height": "100px", "width":"350px", "position":"absolute"});  
     
     
     //screenshot2
-    $("#screenshot2").append("<img id='sample2' src='sample.png' alt='doctor' height='100' width='350' >");
+    $("#screenshot2").append("<img id='sample2' src='sample2.png' alt='doctor' height='100' width='350' >");
     $("#screenshot2").css({"border":"solid", "borderRadius":"10px", "top":"605px", "left":"375px", "height": "100px", "width":"450px", "position":"absolute"});
     
     //screencast
-    $("#screencast").append("<video width='320' height='220' controls><source src='bunny.mp4' type='video/mp4'></video>");
+    $("#screencast").append("<video width='320' height='220' controls><source src='DocIsInScreenCast.mp4' type='video/mp4'></video>");
     $("#screencast").css({"border":"solid", "borderRadius":"10px", "top":"715px", "left":"20px", "height": "230px", "width":"585px", "position":"absolute","paddingLeft":"220px"});
     
 
@@ -71,11 +71,11 @@ var text12 = "<div><b>Testing Done:</b><br><p>We did a few cases of user testing
     
     
     //first image
-    $("#blownContent1").append("<img src='sample.png' alt='doctor' height='800' width = '600'>");
+    $("#blownContent1").append("<img src='sample1.png' alt='doctor' height='800' width = '600'>");
     $("#blownContent1").css({"zindex":"200", "opacity":"1", "position":"absolute", "left":"640px", "top":"100px" });
     
     //second image
-    $("#blownContent2").append("<img src='sample.png' alt='doctor' height='800' width = '600'>");
+    $("#blownContent2").append("<img src='sample2.png' alt='doctor' height='800' width = '600'>");
     $("#blownContent2").css({"zindex":"200", "opacity":"1", "position":"absolute", "left":"640px", "top":"100px" });
         
     
