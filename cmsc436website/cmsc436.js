@@ -29,7 +29,7 @@ $(document).ready(function(){
     $("#apkfile").append("<a href='TheDocIsIn.apk' download>APK DOWNLOAD</a>");
     $("#apkfile").css({"font": "italic bold 30px arial,serif", "textAlign":"center"});
     
-    $("#description").css({"border":"solid", "borderRadius":"10px", "top":"230px", "left":"20px", "height": "700px", "width":"805px", "position":"absolute"});
+    $("#description").css({"border":"solid", "borderRadius":"10px", "top":"230px", "left":"20px", "height": "370px", "width":"805px", "position":"absolute"});
     $("#description").append("<h3>Description</h3><b>Minimum Level SDK: </b> <span><i>11.</i></span> <b>Targeted Level SDK: </b><span><i>21.</i></span>");
     $("#description").append("<b>Development Enviroment</b> <span><i>Eclipse</i></span>");
     
@@ -44,8 +44,65 @@ var text7 = "<div>can choose that question as ''the best answer'' and close the 
 var text8 = "<div>When a user asks a question, he or she is asked what category</div>";
 var text9 = "<div>they want their question to be. The home screen of our app has all of the categories as buttons and</div>";
 var text10 = "<div>clicking each category button takes you to all of the questions within that category.</div>"
-    $("#description").append("<p></p>",text1, text2, text3, text4, text5, text6, text7, text8, text9, text10);
+var text11 = "<div></div>";
+var text12 = "<div><b>Testing Done:</b><br><p>We did a few cases of user testing and returned no problems.</p></div>";
+
+
+    $("#description").append("<p></p>",text1, text2, text3, text4, text5, text6, text7, text8, text9, text10, text11, text12 );
     
+    //screenshot1
+    $("#screenshot1").append("<img id='sample1' src='sample.png' alt='doctor' height='100' width='350' >");
+    $("#screenshot1").css({"border":"solid", "borderRadius":"10px", "top":"605px", "left":"20px", "height": "100px", "width":"350px", "position":"absolute"});  
+    
+    
+    //screenshot2
+    $("#screenshot2").append("<img id='sample2' src='sample.png' alt='doctor' height='100' width='350' >");
+    $("#screenshot2").css({"border":"solid", "borderRadius":"10px", "top":"605px", "left":"375px", "height": "100px", "width":"450px", "position":"absolute"});
+    
+    //screencast
+    $("#screencast").append("<video width='320' height='220' controls><source src='bunny.mp4' type='video/mp4'></video>");
+    $("#screencast").css({"border":"solid", "borderRadius":"10px", "top":"715px", "left":"20px", "height": "230px", "width":"585px", "position":"absolute","paddingLeft":"220px"});
+    
+
+    
+    var screenheight = (screen.height-150) + "px";
+    var screenwidth = (screen.width-20) + "px";
+    $("#blownBackground").css({"opacity": "0.3", "top": "10px", "left": "10px", "height": screenheight, "width": screenwidth, "zindex": "100", "backgroundColor":"black", "position":"absolute"});
+    
+    
+    //first image
+    $("#blownContent1").append("<img id='sample11' src='sample.png' alt='doctor' height='800' width = '600'>");
+    $("#blownContent1").css({"zindex":"200", "opacity":"1", "position":"absolute", "left":"640px", "top":"100px" });
+    
+    //second image
+    $("#blownContent2").append("<img id='sample11' src='sample.png' alt='doctor' height='800' width = '600'>");
+    $("#blownContent2").css({"zindex":"200", "opacity":"1", "position":"absolute", "left":"640px", "top":"100px" });
+        
+    
+    $("#blownContent1").hide();
+    $("#blownContent2").hide();
+    $("#blownBackground").hide();  //correct code that initially hides the background opacityBackground
+    
+    
+    $("#sample1").click(function(){
+       $("#blownBackground").show();
+       $("#blownContent1").show();
+
+       $("#blownBackground").click(function(){
+         $("#blownContent1").hide();
+         $("#blownBackground").hide();
+        });
+    });
+    
+    $("#sample2").click(function(){
+       $("#blownBackground").show();
+       $("#blownContent2").show();
+
+       $("#blownBackground").click(function(){
+         $("#blownContent2").hide();
+         $("#blownBackground").hide();
+        });
+    });
     
     
     });
