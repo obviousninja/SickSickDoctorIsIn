@@ -71,11 +71,11 @@ var text12 = "<div><b>Testing Done:</b><br><p>We did a few cases of user testing
     
     
     //first image
-    $("#blownContent1").append("<img id='sample11' src='sample.png' alt='doctor' height='800' width = '600'>");
+    $("#blownContent1").append("<img src='sample.png' alt='doctor' height='800' width = '600'>");
     $("#blownContent1").css({"zindex":"200", "opacity":"1", "position":"absolute", "left":"640px", "top":"100px" });
     
     //second image
-    $("#blownContent2").append("<img id='sample11' src='sample.png' alt='doctor' height='800' width = '600'>");
+    $("#blownContent2").append("<img src='sample.png' alt='doctor' height='800' width = '600'>");
     $("#blownContent2").css({"zindex":"200", "opacity":"1", "position":"absolute", "left":"640px", "top":"100px" });
         
     
