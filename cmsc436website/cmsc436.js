@@ -22,11 +22,11 @@ $(document).ready(function(){
     $("#namesapps").css({"font": "italic bold 40px arial,serif", "textAlign":"center"});
     $("#sourcefile").css({"border":"solid", "borderRadius":"10px", "top":"125px", "left":"20px", "height": "100px", "width":"350px", "position":"absolute"});
     
-    $("#sourcefile").append("<a href='TheDocIsIn.zip' download>SOURCE FILE DOWNLOAD</a>");
+    $("#sourcefile").append("<a href='TheDocIsInSource.zip' download>SOURCE FILE DOWNLOAD</a>");
     $("#sourcefile").css({"font": "italic bold 30px arial,serif", "textAlign":"center"});    
 
     $("#apkfile").css({"border":"solid", "borderRadius":"10px", "top":"125px", "left":"375px", "height": "100px", "width":"450px", "position":"absolute"});
-    $("#apkfile").append("<a href='TheDocIsIn.apk' download>APK DOWNLOAD</a>");
+    $("#apkfile").append("<a href='APKfileAndKey.zip' download>APK DOWNLOAD</a>");
     $("#apkfile").css({"font": "italic bold 30px arial,serif", "textAlign":"center"});
     
     $("#description").css({"border":"solid", "borderRadius":"10px", "top":"230px", "left":"20px", "height": "370px", "width":"805px", "position":"absolute"});
@@ -60,11 +60,11 @@ var text12 = "<div><b>Testing Done:</b><br><p>We did a few cases of user testing
     $("#screenshot2").css({"border":"solid", "borderRadius":"10px", "top":"605px", "left":"375px", "height": "100px", "width":"450px", "position":"absolute"});
     
     //screencast
-    $("#screencast").append("<video width='320' height='220' controls><source src='DocIsInScreenCast.mp4' type='video/mp4'></video>");
+    $("#screencast").append("<object width='300' height='215' data='http://www.youtube.com/v/PPOsNuFTDbk' allowFullScreen='true'> </object><span id='enlargement'>Enlarge</span>");
+    
     $("#screencast").css({"border":"solid", "borderRadius":"10px", "top":"715px", "left":"20px", "height": "230px", "width":"585px", "position":"absolute","paddingLeft":"220px"});
     
 
-    
     var screenheight = (screen.height-150) + "px";
     var screenwidth = (screen.width-20) + "px";
     $("#blownBackground").css({"opacity": "0.3", "top": "10px", "left": "10px", "height": screenheight, "width": screenwidth, "zindex": "100", "backgroundColor":"black", "position":"absolute"});
@@ -77,11 +77,23 @@ var text12 = "<div><b>Testing Done:</b><br><p>We did a few cases of user testing
     //second image
     $("#blownContent2").append("<img src='sample2.png' alt='doctor' height='800' width = '600'>");
     $("#blownContent2").css({"zindex":"200", "opacity":"1", "position":"absolute", "left":"640px", "top":"100px" });
+    
+     $("#blownContent3").append("<object id='player' width='600' height='800' data='http://www.youtube.com/v/PPOsNuFTDbk'> </object><span id='delargement'>minimize</span>");
+    $("#blownContent3").css({"zindex":"200", "opacity":"1", "position":"absolute", "left":"640px", "top":"100px" });
         
+    $("#enlargement").css({"borderStyle":"groove", "borderRadius":"4px"});
+    $("#delargement").css({"borderStyle":"groove", "borderRadius":"4px", "zindex":"500"});
+    
+   /* <iframe width='560' height='315' src='http://www.youtube.com/v/PPOsNuFTDbk' frameborder='0' allowfullscreen></iframe> */
+    
+    
     
     $("#blownContent1").hide();
     $("#blownContent2").hide();
+    $("#blownContent3").hide();
+    
     $("#blownBackground").hide();  //correct code that initially hides the background opacityBackground
+    
     
     
     $("#sample1").click(function(){
@@ -104,5 +116,16 @@ var text12 = "<div><b>Testing Done:</b><br><p>We did a few cases of user testing
         });
     });
     
+        $("#enlargement").click(function(){
+             $("#blownContent3").fadeIn();
+          
+           
+            
+            
+             $("#delargement").click(function(){
+             $("#blownContent3").fadeOut();
+            
+             });
+        });
     
     });
