@@ -85,22 +85,22 @@ var text12 = "<div><b>Testing Done:</b><br><p>We did a few cases of user testing
     
     
     $("#sample1").click(function(){
-       $("#blownBackground").show();
-       $("#blownContent1").show();
+       $("#blownBackground").fadeIn();
+       $("#blownContent1").fadeIn();
 
        $("#blownBackground").click(function(){
-         $("#blownContent1").hide();
-         $("#blownBackground").hide();
+         $("#blownContent1").fadeOut();
+         $("#blownBackground").fadeOut();
         });
     });
     
     $("#sample2").click(function(){
-       $("#blownBackground").show();
-       $("#blownContent2").show();
+       $("#blownBackground").fadeIn();
+       $("#blownContent2").fadeIn();
 
        $("#blownBackground").click(function(){
-         $("#blownContent2").hide();
-         $("#blownBackground").hide();
+         $("#blownContent2").fadeOut();
+         $("#blownBackground").fadeOut();
         });
     });
     
